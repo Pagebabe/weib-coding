@@ -1,9 +1,10 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: Pagebabe/weib-coding
   branch: main
+  base_url: /api/oauth
 media_folder: "public/images"
 public_folder: "/images"
-local_backend: true
 
 collections:
   - name: "properties"
