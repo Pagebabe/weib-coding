@@ -3,6 +3,7 @@ import { Button } from './ui/button';
 import { cn } from './ui/utils';
 import { Menu, Globe } from 'lucide-react';
 import { routes, mainNav } from '../lib/routes';
+import ThemeToggle from './ThemeToggle';
 
 export default function NavBar({ locale='de' }: { locale?: 'de'|'en'|'th' }) {
   const nav = mainNav(locale as any);
@@ -41,30 +42,32 @@ export default function NavBar({ locale='de' }: { locale?: 'de'|'en'|'th' }) {
             </a>
           ))}
           <div className="opacity-30">|</div>
-          <div className="flex items-center gap-3">
-            <Globe size={16} style={{color: 'var(--color-muted)'}} />
-            <button 
-              className="text-sm font-medium transition-colors hover:opacity-80" 
-              style={{color: locale === 'de' ? 'var(--color-primary)' : 'var(--color-muted)'}}
-              onClick={()=>switchLocale('de')}
-            >
-              DE
-            </button>
-            <button 
-              className="text-sm font-medium transition-colors hover:opacity-80" 
-              style={{color: locale === 'en' ? 'var(--color-primary)' : 'var(--color-muted)'}}
-              onClick={()=>switchLocale('en')}
-            >
-              EN
-            </button>
-            <button 
-              className="text-sm font-medium transition-colors hover:opacity-80" 
-              style={{color: locale === 'th' ? 'var(--color-primary)' : 'var(--color-muted)'}}
-              onClick={()=>switchLocale('th')}
-            >
-              TH
-            </button>
-          </div>
+                 <div className="flex items-center gap-3">
+                   <Globe size={16} style={{color: 'var(--color-muted)'}} />
+                   <button
+                     className="text-sm font-medium transition-colors hover:opacity-80"
+                     style={{color: locale === 'de' ? 'var(--color-primary)' : 'var(--color-muted)'}}
+                     onClick={()=>switchLocale('de')}
+                   >
+                     DE
+                   </button>
+                   <button
+                     className="text-sm font-medium transition-colors hover:opacity-80"
+                     style={{color: locale === 'en' ? 'var(--color-primary)' : 'var(--color-muted)'}}
+                     onClick={()=>switchLocale('en')}
+                   >
+                     EN
+                   </button>
+                   <button
+                     className="text-sm font-medium transition-colors hover:opacity-80"
+                     style={{color: locale === 'th' ? 'var(--color-primary)' : 'var(--color-muted)'}}
+                     onClick={()=>switchLocale('th')}
+                   >
+                     TH
+                   </button>
+                   <div className="opacity-30">|</div>
+                   <ThemeToggle client:load />
+                 </div>
           <Button 
             variant="default" 
             size="sm" 
@@ -101,30 +104,31 @@ export default function NavBar({ locale='de' }: { locale?: 'de'|'en'|'th' }) {
               {item.label}
             </a>
           ))}
-          <div className="flex gap-3 items-center">
-            <Globe size={16} style={{color: 'var(--color-muted)'}} />
-            <button 
-              className="text-sm font-medium transition-colors" 
-              style={{color: locale === 'de' ? 'var(--color-primary)' : 'var(--color-muted)'}}
-              onClick={()=>switchLocale('de')}
-            >
-              DE
-            </button>
-            <button 
-              className="text-sm font-medium transition-colors" 
-              style={{color: locale === 'en' ? 'var(--color-primary)' : 'var(--color-muted)'}}
-              onClick={()=>switchLocale('en')}
-            >
-              EN
-            </button>
-            <button 
-              className="text-sm font-medium transition-colors" 
-              style={{color: locale === 'th' ? 'var(--color-primary)' : 'var(--color-muted)'}}
-              onClick={()=>switchLocale('th')}
-            >
-              TH
-            </button>
-          </div>
+                 <div className="flex gap-3 items-center">
+                   <Globe size={16} style={{color: 'var(--color-muted)'}} />
+                   <button
+                     className="text-sm font-medium transition-colors"
+                     style={{color: locale === 'de' ? 'var(--color-primary)' : 'var(--color-muted)'}}
+                     onClick={()=>switchLocale('de')}
+                   >
+                     DE
+                   </button>
+                   <button
+                     className="text-sm font-medium transition-colors"
+                     style={{color: locale === 'en' ? 'var(--color-primary)' : 'var(--color-muted)'}}
+                     onClick={()=>switchLocale('en')}
+                   >
+                     EN
+                   </button>
+                   <button
+                     className="text-sm font-medium transition-colors"
+                     style={{color: locale === 'th' ? 'var(--color-primary)' : 'var(--color-muted)'}}
+                     onClick={()=>switchLocale('th')}
+                   >
+                     TH
+                   </button>
+                   <ThemeToggle client:load />
+                 </div>
         </div>
       )}
     </header>

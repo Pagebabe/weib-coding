@@ -52,9 +52,9 @@ const year = new Date().getFullYear();
 })}
     </script>
   </head>
-  <body class="min-h-screen bg-white text-gray-900">
+         <body class="min-h-screen fade-in" style="background-color: var(--bg); color: var(--color-text);">
     <NavBar client:load locale={lang} />
-    <main class="container py-8 motion-safe:animate-[fadein_300ms_ease-out]">
+           <main class="container py-8 slide-up">
       <slot />
     </main>
     <footer class="border-t" style="border-color: var(--card-border);">

@@ -4,7 +4,7 @@ import { cn } from "../ui/utils";
 
 export default function ServiceCard({ icon:Icon, title, desc }: { icon: any; title: string; desc: string; }) {
   return (
-    <Card className="hover:shadow-lg transition-shadow" style={{borderColor: 'var(--card-border)'}}>
+    <Card className="scale-in" style={{borderColor: 'var(--card-border)'}}>
       <CardBody>
         <div className="flex items-start gap-3">
           <div 
