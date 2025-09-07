@@ -28,10 +28,11 @@
   "fees_hoa_thb": 2500,
   "lat": 12.9355,
   "lng": 100.8899,
-  "cover": "/images/sample/villa-main.jpg",
+  "cover": "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop&crop=center",
   "images": [
-    "/images/sample/villa-main.jpg",
-    "/images/sample/villa-living.jpg"
+    "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop&crop=center",
+    "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&h=600&fit=crop&crop=center",
+    "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop&crop=center"
   ],
   "url": "/th/properties/luxury-condo-beach/",
   "title": "คอนโดหรู พัทยา บีช",

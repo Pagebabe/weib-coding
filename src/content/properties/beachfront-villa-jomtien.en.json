@@ -13,10 +13,11 @@
     "Garten",
     "Garage"
   ],
-  "cover": "/images/sample/beachfront-main.jpg",
+  "cover": "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&h=600&fit=crop&crop=center",
   "images": [
-    "/images/sample/beachfront-main.jpg",
-    "/images/sample/beachfront-garden.jpg"
+    "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&h=600&fit=crop&crop=center",
+    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=600&fit=crop&crop=center",
+    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=600&fit=crop&crop=center"
   ],
   "url": "/en/properties/beachfront-villa-jomtien/",
   "title": "Beachfront Villa Jomtien",

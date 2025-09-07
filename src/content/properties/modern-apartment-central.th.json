@@ -12,10 +12,11 @@
     "Einkaufszentrum",
     "BTS"
   ],
-  "cover": "/images/sample/apartment-main.jpg",
+  "cover": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&h=600&fit=crop&crop=center",
   "images": [
-    "/images/sample/apartment-main.jpg",
-    "/images/sample/apartment-living.jpg"
+    "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&h=600&fit=crop&crop=center",
+    "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop&crop=center",
+    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop&crop=center"
   ],
   "url": "/th/properties/modern-apartment-central/",
   "title": "Modern Apartment Central",

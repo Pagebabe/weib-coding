@@ -10,9 +10,17 @@
     "land_sqm": 420,
     "location": "จอมเทียน",
     "ownership": "Thai Quota",
-    "features": ["สระว่ายน้ำ","ซีวิว","โรงจอดรถ","พร้อมเฟอร์นิเจอร์"],
+    "features": [
+      "สระว่ายน้ำ",
+      "ซีวิว",
+      "โรงจอดรถ",
+      "พร้อมเฟอร์นิเจอร์"
+    ],
     "cover": "/images/sample/villa-main.jpg",
-    "images": ["/images/sample/villa-main.jpg","/images/sample/villa-living.jpg"],
+    "images": [
+      "/images/sample/villa-main.jpg",
+      "/images/sample/villa-living.jpg"
+    ],
     "description": "วิลล่าสมัยใหม่พร้อมสระส่วนตัวในจอมเทียน",
     "body": "ทำเล สภาพ จุดเด่น"
   }

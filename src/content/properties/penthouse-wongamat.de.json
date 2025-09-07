@@ -13,10 +13,11 @@
     "Rooftop",
     "Concierge"
   ],
-  "cover": "/images/sample/penthouse-main.jpg",
+  "cover": "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop&crop=center",
   "images": [
-    "/images/sample/penthouse-main.jpg",
-    "/images/sample/penthouse-view.jpg"
+    "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop&crop=center",
+    "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&h=600&fit=crop&crop=center",
+    "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop&crop=center"
   ],
   "url": "/de/properties/penthouse-wongamat/",
   "title": "Penthouse Wongamat Beach",

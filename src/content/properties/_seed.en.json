@@ -10,9 +10,17 @@
     "land_sqm": 420,
     "location": "Jomtien",
     "ownership": "Thai Quota",
-    "features": ["Pool","Sea View","Garage","Furnished"],
+    "features": [
+      "Pool",
+      "Sea View",
+      "Garage",
+      "Furnished"
+    ],
     "cover": "/images/sample/villa-main.jpg",
-    "images": ["/images/sample/villa-main.jpg","/images/sample/villa-living.jpg"],
+    "images": [
+      "/images/sample/villa-main.jpg",
+      "/images/sample/villa-living.jpg"
+    ],
     "description": "Modern villa with private pool in Jomtien.",
     "body": "Location, condition and highlights."
   }

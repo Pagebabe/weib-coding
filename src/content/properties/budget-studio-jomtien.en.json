@@ -22,10 +22,11 @@
   ],
   "lat": 12.8888,
   "lng": 100.8555,
-  "cover": "/images/sample/villa-main.jpg",
+  "cover": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&h=600&fit=crop&crop=center",
   "images": [
-    "/images/sample/villa-main.jpg",
-    "/images/sample/villa-living.jpg"
+    "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&h=600&fit=crop&crop=center",
+    "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=600&fit=crop&crop=center",
+    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop&crop=center"
   ],
   "url": "/en/properties/budget-studio-jomtien/",
   "title": "Budget Studio Jomtien",

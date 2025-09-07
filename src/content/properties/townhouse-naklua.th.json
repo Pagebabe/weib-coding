@@ -13,10 +13,11 @@
     "Terrasse",
     "Schule nah"
   ],
-  "cover": "/images/sample/townhouse-main.jpg",
+  "cover": "https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=800&h=600&fit=crop&crop=center",
   "images": [
-    "/images/sample/townhouse-main.jpg",
-    "/images/sample/townhouse-garden.jpg"
+    "https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=800&h=600&fit=crop&crop=center",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=600&fit=crop&crop=center",
+    "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&h=600&fit=crop&crop=center"
   ],
   "url": "/th/properties/townhouse-naklua/",
   "title": "Townhouse Naklua",
