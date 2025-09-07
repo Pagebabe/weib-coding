@@ -1,4 +1,5 @@
 ---
+import NavBar from "../components/NavBar.tsx";
 const { title = "Weib-Coding – Immobilien Pattaya", description = "Immobilien, Beratung und Service in Pattaya", lang = "de" } = Astro.props;
 const year = new Date().getFullYear();
 ---
@@ -22,18 +23,8 @@ const year = new Date().getFullYear();
     </script>
   </head>
   <body class="min-h-screen bg-white text-gray-900">
-    <header class="max-w-7xl mx-auto px-4 py-5 flex items-center justify-between">
-      <a href="/de/" class="font-semibold">Weib-Coding</a>
-      <nav class="flex gap-4 text-sm">
-        <a href="/de/properties/">Immobilien</a>
-        <a href="/de/services/">Service</a>
-        <a href="/de/districts/">Stadtteile</a>
-        <a href="/de/contact/">Kontakt</a>
-        <span class="opacity-50">|</span>
-        <a href="/en/">EN</a><a href="/th/">TH</a>
-      </nav>
-    </header>
-    <main class="max-w-7xl mx-auto px-4 py-8">
+    <NavBar client:load locale={lang} />
+    <main class="max-w-7xl mx-auto px-4 py-8 motion-safe:animate-[fadein_300ms_ease-out]">
       <slot />
     </main>
     <footer class="border-t">
