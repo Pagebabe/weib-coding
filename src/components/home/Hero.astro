@@ -1,16 +1,32 @@
 ---
 import { Button } from "../ui/button";
-const { title, subtitle, image, locale='de', alt = "Pattaya Beachfront", ctaPrimary, ctaSecondary } = Astro.props;
+import ImageBanner from '../ui/ImageBanner.tsx';
+
+const { title, subtitle, images, locale='de', ctaPrimary, ctaSecondary } = Astro.props;
 const link = (l:string) => `/${locale}/${l}/`;
+
+// Default images if none provided
+const defaultImages = [
+  '/images/hero/pattaya-beach-1.jpg',
+  '/images/hero/pattaya-beach-2.jpg',
+  '/images/hero/pattaya-beach-3.jpg'
+];
+
+const heroImages = images || defaultImages;
 ---
 <section class="relative overflow-hidden rounded-3xl md:rounded-[2rem] border" style="border-color: var(--card-border);">
-  <link rel="preload" as="image" href={image} imagesrcset={`${image} 1200w`} imagesizes="(min-width: 1024px) 1200px, 100vw" />
-  <img src={image} alt={alt} class="w-full h-[320px] md:h-[460px] object-cover hero-image" loading="eager" fetchpriority="high" />
-  <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent"></div>
-  <div class="absolute inset-0 flex items-end">
-    <div class="container pb-8">
-      <h1 class="text-white drop-shadow text-3xl md:text-4xl font-bold">{title}</h1>
-      <p class="mt-2 text-white/90 text-lg md:text-xl">{subtitle}</p>
+  <ImageBanner 
+    client:load
+    images={heroImages}
+    title={title}
+    subtitle={subtitle}
+    height="xl"
+    showIndicators={true}
+    autoPlay={true}
+    interval={6000}
+  />
+  <div class="absolute inset-0 flex items-end pointer-events-none">
+    <div class="container pb-8 pointer-events-auto">
       <div class="mt-6 flex gap-3">
         <a href={link('properties')}>
           <Button 
