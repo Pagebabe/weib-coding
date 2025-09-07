@@ -26,8 +26,46 @@ if (!p) throw new Error("Property not found: " + slug);
 // SEO-optimized Title and Description
 const seoTitle = `${p.title} - ${p.type} in ${p.location} | Weib-Coding Real Estate Pattaya`;
 const seoDescription = `${p.title} - ${p.type} in ${p.location}, Thailand. ${p.bedrooms} bedrooms, ${p.living_sqm ? p.living_sqm + 'm² living area' : ''} for ${new Intl.NumberFormat('en-US').format(p.price_thb)} THB. Professional real estate service in Pattaya.`;
+
+const jsonLd = {
+  "@context":"https://schema.org",
+  "@type":"RealEstateListing",
+  "name": p.title,
+  "url": "https://weib-coding.vercel.app" + p.url,
+  "image": p.images || [],
+  "description": p.description || p.title,
+  "offers": {
+    "@type":"Offer",
+    "priceCurrency":"THB",
+    "price": String(p.price_thb || 0),
+    "availability":"https://schema.org/InStock"
+  },
+  "address": {
+    "@type":"PostalAddress",
+    "addressLocality": p.location || "Pattaya",
+    "addressCountry": "TH"
+  },
+  "category": p.type
+};
+
+const og = new URL('/api/og', Astro.site);
+og.searchParams.set('title', p.title);
+if (p.price_thb) og.searchParams.set('price', String(p.price_thb));
+if (p.location)  og.searchParams.set('loc', p.location);
+if (p.images?.[0] || p.cover) og.searchParams.set('img', new URL(p.images?.[0] ?? p.cover!, Astro.site).toString());
+
+const breadcrumbs = {
+  "@context":"https://schema.org","@type":"BreadcrumbList",
+  "itemListElement":[
+    { "@type":"ListItem","position":1,"name":"Home","item":"https://weib-coding.vercel.app/en/" },
+    { "@type":"ListItem","position":2,"name":"Properties","item":"https://weib-coding.vercel.app/en/properties/" },
+    { "@type":"ListItem","position":3,"name": p.title, "item":"https://weib-coding.vercel.app"+p.url }
+  ]
+};
 ---
-<Base lang="en" title={seoTitle} description={seoDescription} image={p.cover}>
+<Base lang="en" title={seoTitle} description={seoDescription} image={og.toString()}>
+  <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+  <script type="application/ld+json">{JSON.stringify(breadcrumbs)}</script>
   <article class="prose max-w-none">
     <h1>{p.title}</h1>
     <p class="text-sm text-gray-600">{p.location} · {p.type} · {p.bedrooms} Bedrooms</p>

@@ -26,8 +26,46 @@ if (!p) throw new Error("Property not found: " + slug);
 // SEO-optimized Title and Description (Thai)
 const seoTitle = `${p.title} - ${p.type} ใน ${p.location} | Weib-Coding อสังหาฯ พัทยา`;
 const seoDescription = `${p.title} - ${p.type} ใน ${p.location}, ประเทศไทย. ${p.bedrooms} ห้องนอน, ${p.living_sqm ? p.living_sqm + 'ตร.ม. พื้นที่ใช้สอย' : ''} ราคา ${new Intl.NumberFormat('th-TH').format(p.price_thb)} บาท. บริการอสังหาริมทรัพย์มืออาชีพในพัทยา.`;
+
+const jsonLd = {
+  "@context":"https://schema.org",
+  "@type":"RealEstateListing",
+  "name": p.title,
+  "url": "https://weib-coding.vercel.app" + p.url,
+  "image": p.images || [],
+  "description": p.description || p.title,
+  "offers": {
+    "@type":"Offer",
+    "priceCurrency":"THB",
+    "price": String(p.price_thb || 0),
+    "availability":"https://schema.org/InStock"
+  },
+  "address": {
+    "@type":"PostalAddress",
+    "addressLocality": p.location || "Pattaya",
+    "addressCountry": "TH"
+  },
+  "category": p.type
+};
+
+const og = new URL('/api/og', Astro.site);
+og.searchParams.set('title', p.title);
+if (p.price_thb) og.searchParams.set('price', String(p.price_thb));
+if (p.location)  og.searchParams.set('loc', p.location);
+if (p.images?.[0] || p.cover) og.searchParams.set('img', new URL(p.images?.[0] ?? p.cover!, Astro.site).toString());
+
+const breadcrumbs = {
+  "@context":"https://schema.org","@type":"BreadcrumbList",
+  "itemListElement":[
+    { "@type":"ListItem","position":1,"name":"หน้าหลัก","item":"https://weib-coding.vercel.app/th/" },
+    { "@type":"ListItem","position":2,"name":"ทรัพย์สิน","item":"https://weib-coding.vercel.app/th/properties/" },
+    { "@type":"ListItem","position":3,"name": p.title, "item":"https://weib-coding.vercel.app"+p.url }
+  ]
+};
 ---
-<Base lang="th" title={seoTitle} description={seoDescription} image={p.cover}>
+<Base lang="th" title={seoTitle} description={seoDescription} image={og.toString()}>
+  <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+  <script type="application/ld+json">{JSON.stringify(breadcrumbs)}</script>
   <article class="prose max-w-none">
     <h1>{p.title}</h1>
     <p class="text-sm text-gray-600">{p.location} · {p.type} · {p.bedrooms} ห้องนอน</p>
