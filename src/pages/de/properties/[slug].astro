@@ -3,8 +3,13 @@ import Base from "../../../layouts/BaseLayout.astro";
 import { loadPropBySlug, loadProps } from "../../../lib/loadProps";
 
 export async function getStaticPaths() {
-  // Für jetzt: statische Liste der verfügbaren Properties
-  const slugs = ['park-villa-privatpool'];
+  // Liste aller verfügbaren Properties
+  const slugs = [
+    'park-villa-privatpool',
+    'luxury-condo-pattaya', 
+    'family-house-naklua',
+    'modern-apartment-central'
+  ];
   return slugs.map(slug => ({
     params: { slug },
     props: { slug }
