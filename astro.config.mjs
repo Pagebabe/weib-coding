@@ -5,5 +5,5 @@ export default defineConfig({
   integrations: [
     react(),
   ],
-  site: 'https://example.com',
+  site: 'https://weib-coding.vercel.app',
 });
