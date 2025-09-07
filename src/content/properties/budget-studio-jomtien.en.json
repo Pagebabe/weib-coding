@@ -1,0 +1,34 @@
+{
+  "slug": "budget-studio-jomtien",
+  "price_thb": 12000,
+  "type": "apartment",
+  "for": "rent",
+  "bedrooms": 0,
+  "bathrooms": 1,
+  "living_sqm": 28,
+  "land_sqm": null,
+  "floor": null,
+  "year_built": 2020,
+  "location": "Jomtien",
+  "district": "Jomtien",
+  "ownership": "Thai Quota",
+  "status": "available",
+  "furnishing": "unfurnished",
+  "features": [
+    "Balkon"
+  ],
+  "amenities": [
+    "Pool"
+  ],
+  "lat": 12.8888,
+  "lng": 100.8555,
+  "cover": "/images/sample/villa-main.jpg",
+  "images": [
+    "/images/sample/villa-main.jpg",
+    "/images/sample/villa-living.jpg"
+  ],
+  "url": "/en/properties/budget-studio-jomtien/",
+  "title": "Budget Studio Jomtien",
+  "description": "Affordable studio near the beach.",
+  "body": "Affordable studio near the beach."
+}

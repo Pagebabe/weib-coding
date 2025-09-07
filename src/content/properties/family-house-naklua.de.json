@@ -2,23 +2,35 @@
   "slug": "family-house-naklua",
   "price_thb": 6500000,
   "type": "house",
+  "for": "sale",
   "bedrooms": 4,
+  "bathrooms": 3,
   "living_sqm": 180,
   "land_sqm": 300,
+  "floor": null,
+  "year_built": 2015,
   "location": "Naklua",
+  "district": "Naklua",
   "ownership": "Thai Quota",
+  "status": "reserved",
+  "furnishing": "partly",
   "features": [
     "Garten",
-    "Garage",
-    "Schule in der Nähe"
+    "Garage"
   ],
-  "cover": "/images/sample/house-main.jpg",
+  "amenities": [
+    "Security"
+  ],
+  "parking": "1 car",
+  "lat": 12.9722,
+  "lng": 100.9111,
+  "cover": "/images/sample/villa-main.jpg",
   "images": [
-    "/images/sample/house-main.jpg",
-    "/images/sample/house-garden.jpg"
+    "/images/sample/villa-main.jpg",
+    "/images/sample/villa-living.jpg"
   ],
   "url": "/de/properties/family-house-naklua/",
   "title": "Familienhaus Naklua",
-  "description": "Perfekt für Familien mit Kindern.",
-  "body": "Perfekt für Familien mit Kindern."
+  "description": "Ruhiges Familienhaus.",
+  "body": "Ruhiges Familienhaus."
 }

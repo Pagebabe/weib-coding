@@ -46,8 +46,35 @@ const seoDescription = `Immobilien in Pattaya entdecken. Villen, Condos, Häuser
         </select>
       </div>
       <div>
+        <label for="bath" class="block text-sm font-medium text-gray-700 mb-1">Badezimmer</label>
+        <select class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" id="bath">
+          <option value="">Alle</option>
+          <option value="1">1+</option>
+          <option value="2">2+</option>
+          <option value="3">3+</option>
+          <option value="4">4+</option>
+        </select>
+      </div>
+    </form>
+    <form id="filters-row2" class="grid md:grid-cols-4 gap-4 mt-4">
+      <div>
+        <label for="for" class="block text-sm font-medium text-gray-700 mb-1">Kauf/Miete</label>
+        <select class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" id="for">
+          <option value="">Alle</option>
+          <option value="sale">Kauf</option>
+          <option value="rent">Miete</option>
+        </select>
+      </div>
+      <div>
+        <label for="minsqm" class="block text-sm font-medium text-gray-700 mb-1">Wohnfläche min (m²)</label>
+        <input class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" type="number" id="minsqm" placeholder="z.B. 50" />
+      </div>
+      <div>
         <label for="q" class="block text-sm font-medium text-gray-700 mb-1">Suche</label>
         <input class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" type="search" id="q" placeholder="Ort, Features..." />
+      </div>
+      <div class="flex items-end">
+        <button type="button" id="clear-filters" class="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg transition-colors">Filter zurücksetzen</button>
       </div>
     </form>
     <div class="mt-4 flex justify-between items-center">
@@ -70,6 +97,9 @@ const seoDescription = `Immobilien in Pattaya entdecken. Villen, Condos, Häuser
            max: document.getElementById('max'),
            type: document.getElementById('type'),
            bed: document.getElementById('bed'),
+           bath: document.getElementById('bath'),
+           for: document.getElementById('for'),
+           minsqm: document.getElementById('minsqm'),
            q: document.getElementById('q')
          };
          const fuse = new Fuse(data, { keys: ['title','location','description','features'], threshold: 0.3 });
@@ -100,6 +130,9 @@ const seoDescription = `Immobilien in Pattaya entdecken. Villen, Condos, Häuser
            const max = parseInt(els.max.value || '0', 10);
            const type = els.type.value;
            const bed = parseInt(els.bed.value || '0', 10);
+           const bath = parseInt(els.bath.value || '0', 10);
+           const wantFor = els.for.value;
+           const minsqm = parseInt(els.minsqm.value || '0', 10);
            const q = els.q.value.trim();
 
            let items = data.slice();
@@ -107,6 +140,9 @@ const seoDescription = `Immobilien in Pattaya entdecken. Villen, Condos, Häuser
            if (max) items = items.filter(p => (p.price_thb || 0) <= max);
            if (type) items = items.filter(p => p.type === type);
            if (bed) items = items.filter(p => (p.bedrooms || 0) >= bed);
+           if (bath) items = items.filter(p => (p.bathrooms || 0) >= bath);
+           if (wantFor) items = items.filter(p => (p.for || 'sale') === wantFor);
+           if (minsqm) items = items.filter(p => (p.living_sqm || 0) >= minsqm);
            if (q) items = fuse.search(q).map(r => r.item).filter(p => items.includes(p));
 
            render(items);

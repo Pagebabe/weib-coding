@@ -19,4 +19,4 @@ vercel-deploy:
 import-csv:
 	@node scripts/csv-to-properties.mjs
 	@git add -A
-	@git commit -m "feat: import properties from CSV" || echo no changes
+	@git commit -m "feat: import properties from CSV (extended)" || echo no changes

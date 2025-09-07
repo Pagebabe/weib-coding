@@ -1,0 +1,40 @@
+{
+  "slug": "luxury-condo-beach",
+  "price_thb": 8500000,
+  "type": "condo",
+  "for": "sale",
+  "bedrooms": 2,
+  "bathrooms": 2,
+  "living_sqm": 86,
+  "land_sqm": null,
+  "floor": 18,
+  "year_built": 2022,
+  "location": "Central Pattaya",
+  "district": "Beachfront",
+  "ownership": "Foreign Quota",
+  "project": "The Peak",
+  "status": "available",
+  "furnishing": "furnished",
+  "features": [
+    "Meerblick",
+    "Balkon"
+  ],
+  "amenities": [
+    "Pool",
+    "Sauna",
+    "Gym"
+  ],
+  "parking": "1 car",
+  "fees_hoa_thb": 2500,
+  "lat": 12.9355,
+  "lng": 100.8899,
+  "cover": "/images/sample/villa-main.jpg",
+  "images": [
+    "/images/sample/villa-main.jpg",
+    "/images/sample/villa-living.jpg"
+  ],
+  "url": "/th/properties/luxury-condo-beach/",
+  "title": "คอนโดหรู พัทยา บีช",
+  "description": "Luxury apartment with sea view.",
+  "body": "Luxury apartment with sea view."
+}
