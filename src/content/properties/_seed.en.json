@@ -1,0 +1,19 @@
+[
+  {
+    "slug": "park-villa-private-pool",
+    "url": "/en/properties/park-villa-private-pool/",
+    "title": "Park Villa with Private Pool",
+    "price_thb": 12500000,
+    "type": "villa",
+    "bedrooms": 3,
+    "living_sqm": 240,
+    "land_sqm": 420,
+    "location": "Jomtien",
+    "ownership": "Thai Quota",
+    "features": ["Pool","Sea View","Garage","Furnished"],
+    "cover": "/images/sample/villa-main.jpg",
+    "images": ["/images/sample/villa-main.jpg","/images/sample/villa-living.jpg"],
+    "description": "Modern villa with private pool in Jomtien.",
+    "body": "Location, condition, highlights in bullet points."
+  }
+]

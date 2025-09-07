@@ -1,0 +1,19 @@
+[
+  {
+    "slug": "park-villa-pool-privat",
+    "url": "/th/properties/park-villa-pool-privat/",
+    "title": "วิลล่าพาร์คพร้อมสระว่ายน้ำส่วนตัว",
+    "price_thb": 12500000,
+    "type": "villa",
+    "bedrooms": 3,
+    "living_sqm": 240,
+    "land_sqm": 420,
+    "location": "จอมเทียน",
+    "ownership": "Thai Quota",
+    "features": ["สระว่ายน้ำ","วิวมหาสมุทร","โรงรถ","เฟอร์นิเจอร์ครบ"],
+    "cover": "/images/sample/villa-main.jpg",
+    "images": ["/images/sample/villa-main.jpg","/images/sample/villa-living.jpg"],
+    "description": "วิลล่าสมัยใหม่พร้อมสระว่ายน้ำส่วนตัวในจอมเทียน",
+    "body": "ทำเล สภาพ จุดเด่นในรูปแบบหัวข้อย่อย"
+  }
+]

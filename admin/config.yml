@@ -1,0 +1,30 @@
+backend:
+  name: git-gateway
+  branch: main
+media_folder: "public/images"
+public_folder: "/images"
+local_backend: true
+
+collections:
+  - name: "properties"
+    label: "Properties"
+    folder: "src/content/properties"
+    create: true
+    slug: "{{slug}}"
+    format: "json"
+    fields:
+      - {label: "Sprache", name: "locale", widget: "select", options: ["de","en","th"], default: "de"}
+      - {label: "Titel", name: "title", widget: "string"}
+      - {label: "Slug", name: "slug", widget: "string"}
+      - {label: "Preis (THB)", name: "price_thb", widget: "number"}
+      - {label: "Typ", name: "type", widget: "select", options: ["villa","condo","house","apartment"]}
+      - {label: "Schlafzimmer", name: "bedrooms", widget: "number"}
+      - {label: "Wohnfläche (m²)", name: "living_sqm", widget: "number"}
+      - {label: "Grundstück (m²)", name: "land_sqm", widget: "number", required: false}
+      - {label: "Ort", name: "location", widget: "string"}
+      - {label: "Eigentum", name: "ownership", widget: "string"}
+      - {label: "Features", name: "features", widget: "list"}
+      - {label: "Cover", name: "cover", widget: "image"}
+      - {label: "Bilder", name: "images", widget: "list", field: {label: "Bild", name: "image", widget: "image"}}
+      - {label: "Kurzbeschreibung", name: "description", widget: "text"}
+      - {label: "Text", name: "body", widget: "markdown"}

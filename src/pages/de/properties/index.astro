@@ -1,0 +1,11 @@
+---
+import Base from "../../../layouts/BaseLayout.astro";
+import Card from "../../../components/PropertyCard.astro";
+import props from "../../../content/properties/_seed.de.json";
+---
+<Base lang="de" title="Immobilien – Weib-Coding">
+  <h1 class="text-2xl font-semibold mb-6">Immobilien</h1>
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    {props.map(p => <Card p={p} />)}
+  </div>
+</Base>

@@ -1,0 +1,13 @@
+---
+const { p } = Astro.props;
+---
+<article class="border rounded-xl overflow-hidden hover:shadow">
+  <a href={p.url} class="block">
+    <img src={p.cover} alt={p.title} class="w-full aspect-[4/3] object-cover" />
+    <div class="p-4">
+      <h3 class="font-semibold">{p.title}</h3>
+      <p class="text-sm text-gray-600">{p.location} · {p.type} · {p.bedrooms} BR</p>
+      <p class="mt-1 font-mono">{new Intl.NumberFormat('de-DE').format(p.price_thb)} THB</p>
+    </div>
+  </a>
+</article>
