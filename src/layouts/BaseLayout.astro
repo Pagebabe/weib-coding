@@ -1,5 +1,6 @@
 ---
 import NavBar from "../components/NavBar.tsx";
+import { Analytics } from '@vercel/analytics/react';
 const { 
   title = "Weib-Coding – Immobilien Pattaya", 
   description = "Immobilien, Beratung und Service in Pattaya", 
@@ -60,5 +61,6 @@ const year = new Date().getFullYear();
         © {new Date().getFullYear()} Weib-Coding · Pattaya
       </div>
     </footer>
+    <Analytics />
   </body>
 </html>
