@@ -9,8 +9,12 @@ import { loadProps } from "../../lib/loadProps";
 import ServiceCard from "../../components/home/ServiceCard";
 import { Home, MapPin, Handshake } from "lucide-react";
 const all = await loadProps('en');
+const prioritized = ['park-villa-privatpool','luxury-condo-beach','family-house-naklua','budget-studio-jomtien'];
+let top4 = all.filter(p => prioritized.includes(p.slug)).slice(0, 4);
+if (top4.length < 4) {
+  top4 = top4.concat(all.filter(p => !prioritized.includes(p.slug)).slice(0, 4 - top4.length));
+}
 const featured = all.slice(0, 6);
-const top4 = all.slice(0, 4);
 ---
 <Base lang="en" title="Real Estate in Pattaya – Weib-Coding" description="Professional real estate consultation in Pattaya. Sales, rentals and services for villas, condos and houses. Discover now!">
   <div class="container section pt-6">
