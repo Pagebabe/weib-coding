@@ -1,9 +1,0 @@
----
-import Base from "../../../layouts/BaseLayout.astro";
-const districts = [{slug:'pattaya-beach',name:'Pattaya Beach'},{slug:'jomtien',name:'Jomtien'},{slug:'naklua',name:'Naklua'}];
----
-<Base lang="th" title="เขตพื้นที่ – พัทยา" description="ภาพรวมเขตพื้นที่ในพัทยา">
-  <section class="prose"><h1>เขตพื้นที่</h1>
-    <ul>{districts.map(d => <li><a class="underline" href={`/th/districts/${d.slug}/`}>{d.name}</a></li>)}</ul>
-  </section>
-</Base>

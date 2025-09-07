@@ -1,23 +1,5 @@
 {
   "framework": "astro",
   "buildCommand": "npm run build",
-  "outputDirectory": "dist",
-  "functions": {
-    "src/pages/api/**/*.ts": {
-      "maxDuration": 10
-    }
-  },
-  "routes": [
-    { "src": "/(de|en|th)(/.*)?", "dest": "/$1$2" }
-  ],
-  "headers": [
-    {
-      "source": "/(de|en|th)(/.*)?",
-      "headers": [
-        { "key": "Cache-Control", "value": "no-store, no-cache, must-revalidate" },
-        { "key": "Pragma", "value": "no-cache" },
-        { "key": "Expires", "value": "0" }
-      ]
-    }
-  ]
+  "outputDirectory": "dist"
 }
