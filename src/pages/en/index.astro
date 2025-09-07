@@ -1,15 +1,27 @@
 ---
 import Base from "../../layouts/BaseLayout.astro";
 import common from "../../i18n/en/common.json";
+import Hero from "../../components/home/Hero.astro";
+import Section from "../../components/home/Section.astro";
+import PropertyGrid from "../../components/home/PropertyGrid.astro";
+import { loadProps } from "../../lib/loadProps";
+import ServiceCard from "../../components/home/ServiceCard";
+import { Home, MapPin, Handshake } from "lucide-react";
+const featured = (await loadProps('en')).slice(0, 6);
 ---
-<Base lang="en" title="Weib-Coding – Real Estate in Pattaya" description="Real estate, rentals and management in Pattaya">
-  <section class="prose">
-    <h1>{common.heroTitle}</h1>
-    <p>{common.heroSubtitle}</p>
-  </section>
-  <section class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-    <a class="block p-5 border rounded-xl hover:shadow" href="/en/properties/">Find properties</a>
-    <a class="block p-5 border rounded-xl hover:shadow" href="/en/services/">Our services</a>
-    <a class="block p-5 border rounded-xl hover:shadow" href="/en/districts/">Explore districts</a>
-  </section>
+<Base lang="en" title="Weib-Coding – Real Estate in Pattaya" description="Sales · Rentals · Services in Pattaya, Thailand">
+  <div class="container section pt-6">
+    <Hero locale="en" title={common.heroTitle} subtitle={common.heroSubtitle} image="/images/hero/en.jpg" />
+  </div>
+  <Section title="Latest listings" subtitle="Discover our newest properties in Pattaya">
+    <PropertyGrid items={featured} />
+    <div class="mt-6"><a class="underline" href="/en/properties/">View all properties</a></div>
+  </Section>
+  <Section title="Our Services" subtitle="Full service for your real estate needs">
+    <div class="grid md:grid-cols-3 gap-6">
+      <ServiceCard client:load icon={Home} title="Property Sales" desc="Professional marketing with modern strategies." />
+      <ServiceCard client:load icon={MapPin} title="Location Advisory" desc="Find the right area for your needs." />
+      <ServiceCard client:load icon={Handshake} title="Full Service" desc="From search to closing – we guide you." />
+    </div>
+  </Section>
 </Base>

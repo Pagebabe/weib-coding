@@ -1,115 +1,31 @@
 ---
 import Base from "../../layouts/BaseLayout.astro";
 import common from "../../i18n/de/common.json";
+import Hero from "../../components/home/Hero.astro";
+import Section from "../../components/home/Section.astro";
+import PropertyGrid from "../../components/home/PropertyGrid.astro";
 import { loadProps } from "../../lib/loadProps";
-
-const featuredProps = await loadProps('de');
-const latestProps = featuredProps.slice(0, 3);
+import ServiceCard from "../../components/home/ServiceCard";
+import { Home, MapPin, Handshake } from "lucide-react";
+const featured = (await loadProps('de')).slice(0, 6);
 ---
-<Base lang="de" title="Weib-Coding – Immobilien in Pattaya" description="Professionelle Immobilienberatung in Pattaya. Villen, Condos, Häuser und Apartments zum Verkauf und zur Miete. Deutschsprachiger Service.">
-  <!-- Hero Section -->
-  <section class="text-center py-16 bg-gradient-to-br from-blue-50 to-white">
-    <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-      {common.heroTitle}
-    </h1>
-    <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-      {common.heroSubtitle}
-    </p>
-    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <a href="/de/properties/" class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors">
-        Immobilien finden
-      </a>
-      <a href="/de/services/" class="border border-blue-600 text-blue-600 px-8 py-3 rounded-lg hover:bg-blue-50 transition-colors">
-        Unser Service
-      </a>
-    </div>
-  </section>
+<Base lang="de" title="Weib-Coding – Immobilien in Pattaya" description="Verkauf · Vermietung · Service in Pattaya, Thailand">
+  <div class="container section pt-6">
+    <Hero locale="de" title={common.heroTitle} subtitle={common.heroSubtitle} image="/images/hero/de.jpg" />
+  </div>
 
-  <!-- Featured Properties -->
-  <section class="py-16">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl font-bold text-gray-900 mb-4">Aktuelle Angebote</h2>
-      <p class="text-gray-600">Entdecken Sie unsere neuesten Immobilien in Pattaya</p>
+  <Section title="Aktuelle Angebote" subtitle="Entdecken Sie unsere neuesten Immobilien in Pattaya">
+    <PropertyGrid items={featured} />
+    <div class="mt-6">
+      <a class="underline" href="/de/properties/">Alle Immobilien anzeigen</a>
     </div>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      {latestProps.map(prop => (
-        <a href={prop.url} class="block group">
-          <div class="bg-white rounded-xl shadow-sm border overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-            <div class="relative">
-              <img src={prop.cover || '/images/placeholder.jpg'} alt={prop.title} class="w-full h-48 object-cover" loading="lazy" decoding="async" />
-              <div class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full text-xs font-medium text-gray-700">
-                {prop.type}
-              </div>
-            </div>
-            <div class="p-6">
-              <h3 class="font-semibold text-lg mb-2 group-hover:text-blue-600 transition-colors">
-                {prop.title}
-              </h3>
-              <p class="text-gray-600 text-sm mb-3 flex items-center">
-                <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
-                </svg>
-                {prop.location} · {prop.bedrooms} BR
-              </p>
-              <p class="text-2xl font-bold text-blue-600 mb-3">
-                {new Intl.NumberFormat('de-DE').format(prop.price_thb)} THB
-              </p>
-              {prop.features && prop.features.length > 0 && (
-                <div class="flex flex-wrap gap-1">
-                  {prop.features.slice(0, 2).map(feature => (
-                    <span class="text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded-full">
-                      {feature}
-                    </span>
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
-        </a>
-      ))}
-    </div>
-    <div class="text-center mt-8">
-      <a href="/de/properties/" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
-        Alle Immobilien anzeigen
-      </a>
-    </div>
-  </section>
+  </Section>
 
-  <!-- Services -->
-  <section class="py-16 bg-gray-50">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl font-bold text-gray-900 mb-4">Unsere Services</h2>
-      <p class="text-gray-600">Vollservice für Ihre Immobilienbedürfnisse</p>
+  <Section title="Unsere Services" subtitle="Vollservice für Ihre Immobilienbedürfnisse">
+    <div class="grid md:grid-cols-3 gap-6">
+      <ServiceCard client:load icon={Home} title="Immobilienverkauf" desc="Professionelle Vermarktung mit modernen Marketingstrategien." />
+      <ServiceCard client:load icon={MapPin} title="Standortberatung" desc="Finden Sie den perfekten Standort für Ihre Bedürfnisse." />
+      <ServiceCard client:load icon={Handshake} title="Vollservice" desc="Von der Suche bis zum Vertragsabschluss – wir begleiten Sie." />
     </div>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      <div class="bg-white p-8 rounded-xl shadow-sm">
-        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-          <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
-          </svg>
-        </div>
-        <h3 class="text-xl font-semibold mb-3">Immobilienverkauf</h3>
-        <p class="text-gray-600">Professionelle Vermarktung Ihrer Immobilie mit modernen Marketingstrategien.</p>
-      </div>
-      <div class="bg-white p-8 rounded-xl shadow-sm">
-        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-          <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-          </svg>
-        </div>
-        <h3 class="text-xl font-semibold mb-3">Standortberatung</h3>
-        <p class="text-gray-600">Finden Sie den perfekten Standort in Pattaya für Ihre Bedürfnisse.</p>
-      </div>
-      <div class="bg-white p-8 rounded-xl shadow-sm">
-        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-          <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-          </svg>
-        </div>
-        <h3 class="text-xl font-semibold mb-3">Vollservice</h3>
-        <p class="text-gray-600">Von der Suche bis zum Vertragsabschluss - wir begleiten Sie durch den gesamten Prozess.</p>
-      </div>
-    </div>
-  </section>
+  </Section>
 </Base>

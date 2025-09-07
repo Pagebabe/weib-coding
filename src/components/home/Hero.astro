@@ -1,0 +1,19 @@
+---
+import { Button } from "../ui/button";
+const { title, subtitle, image, locale='de' } = Astro.props;
+const link = (l:string) => `/${locale}/${l}/`;
+---
+<section class="relative overflow-hidden rounded-3xl md:rounded-[2rem] border border-gray-200">
+  <img src={image} alt="" class="w-full h-[320px] md:h-[460px] object-cover" />
+  <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent"></div>
+  <div class="absolute inset-0 flex items-end">
+    <div class="container pb-8">
+      <h1 class="text-white drop-shadow">{title}</h1>
+      <p class="mt-2 text-white/90 text-lg md:text-xl">{subtitle}</p>
+      <div class="mt-6 flex gap-3">
+        <a href={link('properties')}><Button size="lg" class="rounded-2xl">Immobilien finden</Button></a>
+        <a href={link('contact')}><Button size="lg" variant="outline" class="bg-white/90 backdrop-blur rounded-2xl">Anfrage</Button></a>
+      </div>
+    </div>
+  </div>
+</section>
