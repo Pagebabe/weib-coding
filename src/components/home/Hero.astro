@@ -1,57 +1,63 @@
 ---
 import { Button } from "../ui/button";
-import ImageBanner from '../ui/ImageBanner.tsx';
 
 const { title, subtitle, images, locale='de', ctaPrimary, ctaSecondary } = Astro.props;
 const link = (l:string) => `/${locale}/${l}/`;
 
 // Default images if none provided
 const defaultImages = [
-  '/images/hero/pattaya-beach-1.jpg',
-  '/images/hero/pattaya-beach-2.jpg',
-  '/images/hero/pattaya-beach-3.jpg'
+  'https://images.unsplash.com/photo-1544984243-ec57ea16fe25?w=1200&h=500&fit=crop&crop=center',
+  'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&h=500&fit=crop&crop=center',
+  'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=1200&h=500&fit=crop&crop=center'
 ];
 
 const heroImages = images || defaultImages;
+const currentImage = heroImages[0]; // Use first image for now
 ---
-<section class="relative overflow-hidden rounded-3xl md:rounded-[2rem] border" style="border-color: var(--card-border);">
-  <ImageBanner 
-    client:load
-    images={heroImages}
-    title={title}
-    subtitle={subtitle}
-    height="xl"
-    showIndicators={true}
-    autoPlay={true}
-    interval={6000}
-  />
-  <div class="absolute inset-0 flex items-end pointer-events-none">
-    <div class="container pb-8 pointer-events-auto">
-      <div class="mt-6 flex gap-3">
-        <a href={link('properties')}>
-          <Button 
-            size="lg" 
-            style={{
-              backgroundColor: 'var(--color-primary)',
-              borderColor: 'var(--color-primary)'
-            }}
-          >
-            {ctaPrimary || 'Immobilien finden'}
-          </Button>
-        </a>
-        <a href={link('contact')}>
-          <Button 
-            size="lg" 
-            variant="outline" 
-            class="bg-white/90 backdrop-blur"
-            style={{
-              borderColor: 'white',
-              color: 'var(--color-text)'
-            }}
-          >
-            {ctaSecondary || 'Anfrage senden'}
-          </Button>
-        </a>
+<section class="relative overflow-hidden rounded-3xl md:rounded-[2rem] border shadow-2xl" style="border-color: var(--card-border);">
+  <!-- Hero Image -->
+  <div class="relative h-[500px] md:h-[600px]">
+    <img 
+      src={currentImage}
+      alt={title}
+      class="w-full h-full object-cover"
+      loading="eager"
+      fetchpriority="high"
+    />
+    
+    <!-- Gradient Overlay -->
+    <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent"></div>
+    
+    <!-- Content -->
+    <div class="absolute inset-0 flex items-center">
+      <div class="container">
+        <div class="max-w-2xl">
+          <h1 class="text-4xl md:text-6xl font-bold text-white mb-4 leading-tight">
+            {title}
+          </h1>
+          <p class="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed">
+            {subtitle}
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href={link('properties')}>
+              <Button 
+                size="lg" 
+                class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-semibold rounded-lg transition-colors"
+              >
+                {ctaPrimary || 'Immobilien finden'}
+              </Button>
+            </a>
+            <a href={link('contact')}>
+              <Button 
+                size="lg" 
+                variant="outline" 
+                class="bg-white/90 hover:bg-white text-gray-900 px-8 py-4 text-lg font-semibold rounded-lg transition-colors border-white"
+              >
+                {ctaSecondary || 'Anfrage senden'}
+              </Button>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>

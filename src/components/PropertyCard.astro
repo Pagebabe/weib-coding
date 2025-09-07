@@ -1,21 +1,104 @@
 ---
 const { p } = Astro.props;
 ---
-<article class="card overflow-hidden scale-in">
+
+<div class="group relative">
   <a href={p.url} class="block">
-    <img 
-      src={p.cover} 
-      alt={p.title} 
-      class="w-full aspect-[4/3] object-cover" 
-      loading="lazy"
-      decoding="async"
-      srcset={`${p.cover} 600w, ${p.cover} 900w, ${p.cover} 1200w`}
-      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-    />
-    <div class="p-4">
-      <h3 class="font-semibold text-lg mb-2" style="color: var(--color-text);">{p.title}</h3>
-      <p class="text-sm mb-2" style="color: var(--color-muted);">{p.location} · {p.type} · {p.bedrooms} BR</p>
-      <p class="font-mono text-lg font-bold" style="color: var(--color-primary);">{new Intl.NumberFormat('de-DE').format(p.price_thb)} THB</p>
+    <div class="card overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+      <!-- Image with overlay -->
+      <div class="relative aspect-[4/3] overflow-hidden">
+        <img 
+          src={p.cover || 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=600&fit=crop&crop=center'} 
+          alt={p.title} 
+          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" 
+          loading="lazy"
+          decoding="async"
+        />
+        
+        <!-- Status Badge -->
+        {p.status && (
+          <div class="absolute top-3 left-3">
+            <span class={`px-3 py-1 rounded-full text-xs font-semibold ${
+              p.status === 'available' ? 'bg-green-100 text-green-800' :
+              p.status === 'reserved' ? 'bg-yellow-100 text-yellow-800' :
+              p.status === 'sold' ? 'bg-red-100 text-red-800' :
+              'bg-gray-100 text-gray-800'
+            }`}>
+              {p.status === 'available' ? 'Verfügbar' :
+               p.status === 'reserved' ? 'Reserviert' :
+               p.status === 'sold' ? 'Verkauft' :
+               p.status === 'rented' ? 'Vermietet' : p.status}
+            </span>
+          </div>
+        )}
+
+        <!-- Gradient Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      </div>
+
+      <div class="p-4">
+        <!-- Title -->
+        <h3 class="font-semibold text-lg mb-2 line-clamp-2" style="color: var(--color-text)">
+          {p.title}
+        </h3>
+
+        <!-- Location -->
+        <div class="flex items-center gap-1 mb-3">
+          <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+          </svg>
+          <span class="text-sm text-gray-600">{p.location || 'Pattaya'}</span>
+        </div>
+
+        <!-- Property Stats -->
+        <div class="flex items-center gap-4 mb-3 text-sm text-gray-600">
+          <div class="flex items-center gap-1">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5a2 2 0 012-2h4a2 2 0 012 2v2H8V5z"></path>
+            </svg>
+            <span>{p.bedrooms} BR</span>
+          </div>
+          <div class="flex items-center gap-1">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"></path>
+            </svg>
+            <span>{p.bathrooms || 1} BA</span>
+          </div>
+          {p.living_sqm && (
+            <div class="flex items-center gap-1">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path>
+              </svg>
+              <span>{p.living_sqm} m²</span>
+            </div>
+          )}
+        </div>
+
+        <!-- Features -->
+        {p.features && p.features.length > 0 && (
+          <div class="mb-3">
+            <div class="flex flex-wrap gap-1">
+              {p.features.slice(0, 2).map((feature: string) => (
+                <span class="text-xs text-gray-600 bg-gray-100 px-2 py-1 rounded">
+                  {feature}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <!-- Price -->
+        <div class="flex items-center justify-between">
+          <div class="text-xl font-bold" style="color: var(--color-primary)">
+            {new Intl.NumberFormat('de-DE').format(p.price_thb)} THB
+          </div>
+          <button class="px-4 py-2 text-sm font-medium text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-50 transition-colors">
+            Ansehen
+          </button>
+        </div>
+      </div>
     </div>
   </a>
-</article>
+</div>
