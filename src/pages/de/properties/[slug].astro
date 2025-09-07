@@ -6,13 +6,9 @@ export async function getStaticPaths() {
   // Liste aller verfügbaren Properties
   const slugs = [
     'park-villa-privatpool',
-    'luxury-condo-pattaya', 
+    'luxury-condo-beach',
     'family-house-naklua',
-    'modern-apartment-central',
-    'penthouse-wongamat',
-    'beachfront-villa-jomtien',
-    'studio-condo-central',
-    'townhouse-naklua'
+    'budget-studio-jomtien'
   ];
   return slugs.map(slug => ({
     params: { slug },
