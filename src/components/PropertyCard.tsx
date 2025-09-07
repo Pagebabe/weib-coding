@@ -1,11 +1,16 @@
 import * as React from 'react';
 import { Card, CardBody } from './ui/card';
+import { trackPropertyClick } from '../lib/analytics';
 
 type P = { url:string; title:string; cover?:string; location?:string; type:string; bedrooms:number; price_thb:number; };
 
 export default function PropertyCard({ p }: { p:P }) {
+  const handleClick = () => {
+    trackPropertyClick(p.url, p.title);
+  };
+
   return (
-    <a href={p.url} className="block">
+    <a href={p.url} className="block" onClick={handleClick}>
       <Card className="overflow-hidden transition-shadow hover:shadow-lg motion-safe:animate-[cardin_280ms_ease-out]">
         <img 
           src={p.cover || ''} 

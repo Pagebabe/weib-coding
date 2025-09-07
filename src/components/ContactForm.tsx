@@ -6,6 +6,7 @@ interface ContactFormData {
   name: string;
   email: string;
   phone: string;
+  interest: string;
   message: string;
   property?: string;
 }
@@ -15,6 +16,7 @@ export default function ContactForm() {
     name: '',
     email: '',
     phone: '',
+    interest: 'buy',
     message: '',
     property: ''
   });
@@ -37,7 +39,7 @@ export default function ContactForm() {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData(prev => ({
       ...prev,
       [e.target.name]: e.target.value
@@ -49,11 +51,11 @@ export default function ContactForm() {
       <div className="bg-green-50 border border-green-200 rounded-lg p-6 text-center">
         <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
           <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <h3 className="text-lg font-semibold text-green-800 mb-2">Nachricht gesendet!</h3>
-        <p className="text-green-600">Vielen Dank für Ihre Nachricht. Wir melden uns schnellstmöglich bei Ihnen.</p>
+        <h3 className="text-lg font-semibold text-green-800 mb-2">Vielen Dank!</h3>
+        <p className="text-green-700">Ihre Anfrage wurde erfolgreich übermittelt. Wir melden uns schnellstmöglich bei Ihnen.</p>
       </div>
     );
   }
@@ -91,18 +93,39 @@ export default function ContactForm() {
         </div>
       </div>
 
-      <div>
-        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-          Telefon
-        </label>
-        <Input
-          id="phone"
-          name="phone"
-          type="tel"
-          value={formData.phone}
-          onChange={handleChange}
-          placeholder="+66 XX XXX XXXX"
-        />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+            Telefon *
+          </label>
+          <Input
+            id="phone"
+            name="phone"
+            type="tel"
+            required
+            value={formData.phone}
+            onChange={handleChange}
+            placeholder="+66 XX XXX XXXX"
+          />
+        </div>
+        <div>
+          <label htmlFor="interest" className="block text-sm font-medium text-gray-700 mb-2">
+            Interesse *
+          </label>
+          <select
+            id="interest"
+            name="interest"
+            required
+            value={formData.interest}
+            onChange={handleChange}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          >
+            <option value="buy">Kaufen</option>
+            <option value="rent">Vermieten</option>
+            <option value="sell">Verkaufen</option>
+            <option value="consultation">Beratung</option>
+          </select>
+        </div>
       </div>
 
       <div>
@@ -115,32 +138,31 @@ export default function ContactForm() {
           type="text"
           value={formData.property}
           onChange={handleChange}
-          placeholder="z.B. Park Villa mit Privatpool"
+          placeholder="z.B. Villa in Jomtien"
         />
       </div>
 
       <div>
         <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-          Nachricht *
+          Nachricht
         </label>
         <textarea
           id="message"
           name="message"
-          required
           rows={4}
           value={formData.message}
           onChange={handleChange}
-          placeholder="Beschreiben Sie Ihre Immobilienwünsche..."
-          className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          placeholder="Beschreiben Sie Ihre Wünsche..."
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
         />
       </div>
 
       <Button
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+        className="w-full"
       >
-        {isSubmitting ? 'Wird gesendet...' : 'Nachricht senden'}
+        {isSubmitting ? 'Wird gesendet...' : 'Anfrage senden'}
       </Button>
     </form>
   );

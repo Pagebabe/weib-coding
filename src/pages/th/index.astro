@@ -12,9 +12,9 @@ const all = await loadProps('th');
 const featured = all.slice(0, 6);
 const top4 = all.slice(0, 4);
 ---
-<Base lang="th" title="Weib-Coding – อสังหาฯ พัทยา" description="ขาย · เช่า · บริการ ที่พัทยา ประเทศไทย">
+<Base lang="th" title="อสังหาฯ พัทยา – Weib-Coding" description="คำปรึกษาอสังหาริมทรัพย์มืออาชีพในพัทยา ขาย เช่า และบริการสำหรับวิลล่า คอนโด และบ้าน ค้นหาตอนนี้!">
   <div class="container section pt-6">
-    <Hero locale="th" title={common.heroTitle} subtitle={common.heroSubtitle} image="/images/hero/th.jpg" />
+    <Hero locale="th" title={common.heroTitle} subtitle={common.heroSubtitle} image="/images/hero/th.jpg" ctaPrimary={common.ctaPrimary} ctaSecondary={common.ctaSecondary} />
   </div>
   <Section title="ทรัพย์ล่าสุด" subtitle="ค้นหาทรัพย์ใหม่ล่าสุดของเราในพัทยา">
     {top4.length >= 4 ? <FeaturedSplit items={top4} /> : <PropertyGrid items={featured} />}

@@ -12,9 +12,9 @@ const all = await loadProps('en');
 const featured = all.slice(0, 6);
 const top4 = all.slice(0, 4);
 ---
-<Base lang="en" title="Weib-Coding – Real Estate in Pattaya" description="Sales · Rentals · Services in Pattaya, Thailand">
+<Base lang="en" title="Real Estate in Pattaya – Weib-Coding" description="Professional real estate consultation in Pattaya. Sales, rentals and services for villas, condos and houses. Discover now!">
   <div class="container section pt-6">
-    <Hero locale="en" title={common.heroTitle} subtitle={common.heroSubtitle} image="/images/hero/en.jpg" />
+    <Hero locale="en" title={common.heroTitle} subtitle={common.heroSubtitle} image="/images/hero/en.jpg" ctaPrimary={common.ctaPrimary} ctaSecondary={common.ctaSecondary} />
   </div>
   <Section title="Latest listings" subtitle="Discover our newest properties in Pattaya">
     {top4.length >= 4 ? <FeaturedSplit items={top4} /> : <PropertyGrid items={featured} />}

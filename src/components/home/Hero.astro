@@ -1,6 +1,6 @@
 ---
 import { Button } from "../ui/button";
-const { title, subtitle, image, locale='de', alt = "Pattaya Beachfront" } = Astro.props;
+const { title, subtitle, image, locale='de', alt = "Pattaya Beachfront", ctaPrimary, ctaSecondary } = Astro.props;
 const link = (l:string) => `/${locale}/${l}/`;
 ---
 <section class="relative overflow-hidden rounded-3xl md:rounded-[2rem] border border-gray-200">
@@ -12,8 +12,8 @@ const link = (l:string) => `/${locale}/${l}/`;
       <h1 class="text-white drop-shadow">{title}</h1>
       <p class="mt-2 text-white/90 text-lg md:text-xl">{subtitle}</p>
       <div class="mt-6 flex gap-3">
-        <a href={link('properties')}><Button size="lg" class="rounded-2xl">Immobilien finden</Button></a>
-        <a href={link('contact')}><Button size="lg" variant="outline" class="bg-white/90 backdrop-blur rounded-2xl">Anfrage</Button></a>
+        <a href={link('properties')}><Button size="lg" class="rounded-2xl">{ctaPrimary || 'Immobilien finden'}</Button></a>
+        <a href={link('contact')}><Button size="lg" variant="outline" class="bg-white/90 backdrop-blur rounded-2xl">{ctaSecondary || 'Anfrage senden'}</Button></a>
       </div>
     </div>
   </div>
