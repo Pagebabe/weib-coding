@@ -2,6 +2,7 @@
 import NavBar from "../components/NavBar.tsx";
 import { Analytics } from '@vercel/analytics/react';
 import { generateSEOTags, generateStructuredData } from '../lib/seo.ts';
+import { ToastProvider } from '../components/ui/toast-provider';
 
 const {
   title,
@@ -81,10 +82,12 @@ const year = new Date().getFullYear();
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
   </head>
          <body class="min-h-screen fade-in" style="background-color: var(--bg); color: var(--color-text);">
-    <NavBar client:load locale={lang} />
-           <main class="container py-8 slide-up">
-      <slot />
-    </main>
+    <ToastProvider client:load>
+      <NavBar client:load locale={lang} />
+      <main class="container py-8 slide-up">
+        <slot />
+      </main>
+    </ToastProvider>
     <footer class="border-t" style="border-color: var(--card-border);">
       <div class="container py-10 text-sm grid md:grid-cols-4 gap-6">
         <div>
