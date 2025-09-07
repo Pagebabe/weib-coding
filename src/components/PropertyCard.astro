@@ -1,13 +1,13 @@
 ---
 const { p } = Astro.props;
 ---
-<article class="border rounded-xl overflow-hidden hover:shadow">
+<article class="card overflow-hidden hover:shadow-lg transition-shadow">
   <a href={p.url} class="block">
     <img src={p.cover} alt={p.title} class="w-full aspect-[4/3] object-cover" />
     <div class="p-4">
-      <h3 class="font-semibold">{p.title}</h3>
-      <p class="text-sm text-gray-600">{p.location} · {p.type} · {p.bedrooms} BR</p>
-      <p class="mt-1 font-mono">{new Intl.NumberFormat('de-DE').format(p.price_thb)} THB</p>
+      <h3 class="font-semibold text-lg mb-2" style="color: var(--color-text);">{p.title}</h3>
+      <p class="text-sm mb-2" style="color: var(--color-muted);">{p.location} · {p.type} · {p.bedrooms} BR</p>
+      <p class="font-mono text-lg font-bold" style="color: var(--color-primary);">{new Intl.NumberFormat('de-DE').format(p.price_thb)} THB</p>
     </div>
   </a>
 </article>

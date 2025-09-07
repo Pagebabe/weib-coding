@@ -9,8 +9,12 @@ import { loadProps } from "../../lib/loadProps";
 import ServiceCard from "../../components/home/ServiceCard";
 import { Home, MapPin, Handshake } from "lucide-react";
 const all = await loadProps('th');
+const prioritized = ['park-villa-privatpool','luxury-condo-beach','family-house-naklua','budget-studio-jomtien'];
+let top4 = all.filter(p => prioritized.includes(p.slug)).slice(0, 4);
+if (top4.length < 4) {
+  top4 = top4.concat(all.filter(p => !prioritized.includes(p.slug)).slice(0, 4 - top4.length));
+}
 const featured = all.slice(0, 6);
-const top4 = all.slice(0, 4);
 ---
 <Base lang="th" title="อสังหาฯ พัทยา – Weib-Coding" description="คำปรึกษาอสังหาริมทรัพย์มืออาชีพในพัทยา ขาย เช่า และบริการสำหรับวิลล่า คอนโด และบ้าน ค้นหาตอนนี้!">
   <div class="container section pt-6">
