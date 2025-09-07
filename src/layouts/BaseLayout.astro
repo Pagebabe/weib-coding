@@ -22,6 +22,10 @@ const {
   organization
 } = Astro.props;
 
+// Build-Stamp für Deployment-Verifikation
+const COMMIT = import.meta.env.VERCEL_GIT_COMMIT_SHA ?? import.meta.env.GITHUB_SHA ?? '';
+const BUILT_AT = new Date().toISOString();
+
 const seo = generateSEOTags({
   title,
   description,
@@ -71,6 +75,10 @@ const year = new Date().getFullYear();
     <meta property="twitter:title" content={seo.title} />
     <meta property="twitter:description" content={seo.description} />
     <meta property="twitter:image" content={seo.image} />
+
+    <!-- Build-Stamp für Deployment-Verifikation -->
+    <meta name="x-build-commit" content={COMMIT} />
+    <meta name="x-build-time" content={BUILT_AT} />
 
     <!-- Additional SEO -->
     <meta name="robots" content="index, follow" />

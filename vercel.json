@@ -1,5 +1,16 @@
 {
   "framework": "astro",
   "buildCommand": "npm run build",
-  "outputDirectory": "dist"
+  "outputDirectory": "dist",
+  "routes": [
+    { "src": "/(de|en|th)(/.*)?", "dest": "/$1$2" }
+  ],
+  "headers": [
+    {
+      "source": "/(de|en|th)(/.*)?",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-store" }
+      ]
+    }
+  ]
 }
