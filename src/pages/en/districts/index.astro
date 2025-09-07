@@ -1,0 +1,9 @@
+---
+import Base from "../../../layouts/BaseLayout.astro";
+const districts = [{slug:'pattaya-beach',name:'Pattaya Beach'},{slug:'jomtien',name:'Jomtien'},{slug:'naklua',name:'Naklua'}];
+---
+<Base lang="en" title="Districts – Pattaya" description="Overview of Pattaya districts.">
+  <section class="prose"><h1>Districts</h1>
+    <ul>{districts.map(d => <li><a class="underline" href={`/en/districts/${d.slug}/`}>{d.name}</a></li>)}</ul>
+  </section>
+</Base>

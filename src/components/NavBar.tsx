@@ -1,25 +1,42 @@
 import * as React from 'react';
 import { Button } from './ui/button';
 import { cn } from './ui/utils';
-import { Menu } from 'lucide-react';
+import { Menu, Globe } from 'lucide-react';
+import { routes, mainNav } from '../lib/routes';
 
 export default function NavBar({ locale='de' }: { locale?: 'de'|'en'|'th' }) {
-  const link = (l:string) => `/${locale}/${l}/`;
+  const nav = mainNav(locale as any);
   const [open,setOpen] = React.useState(false);
+  const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
+  const isActive = (href:string)=> pathname.startsWith(href);
+
+  // Locale switch: versucht aktuellen Pfad zu spiegeln
+  const switchLocale = (target:'de'|'en'|'th') => {
+    if (typeof window === 'undefined') return;
+    const parts = window.location.pathname.split('/').filter(Boolean);
+    if (parts.length === 0) { window.location.href = routes.home(target); return; }
+    parts[0] = target;
+    window.location.href = '/' + parts.join('/') + (window.location.pathname.endsWith('/') ? '/' : '/');
+  };
+
   return (
     <header className="border-b bg-white/70 backdrop-blur">
       <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
         <a href={`/${locale}/`} className="font-semibold tracking-tight">Weib-Coding</a>
         <nav className={cn('gap-5 items-center hidden md:flex')}>
-          <a href={link('properties')} className="text-sm">Immobilien</a>
-          <a href={link('services')} className="text-sm">Service</a>
-          <a href={link('districts')} className="text-sm">Stadtteile</a>
-          <a href={link('contact')} className="text-sm">Kontakt</a>
+          {nav.map(item => (
+            <a key={item.href} href={item.href} className={cn('text-sm', isActive(item.href) && 'font-semibold underline')}>
+              {item.label}
+            </a>
+          ))}
           <div className="opacity-50">|</div>
-          <a href="/de/" className="text-sm">DE</a>
-          <a href="/en/" className="text-sm">EN</a>
-          <a href="/th/" className="text-sm">TH</a>
-          <Button variant="default" size="sm" className="ml-2" onClick={()=>document.getElementById('contact')?.scrollIntoView({behavior:'smooth'})}>Anfrage</Button>
+          <div className="flex items-center gap-2">
+            <Globe size={16} className="opacity-70" />
+            <button className="text-sm underline" onClick={()=>switchLocale('de')}>DE</button>
+            <button className="text-sm underline" onClick={()=>switchLocale('en')}>EN</button>
+            <button className="text-sm underline" onClick={()=>switchLocale('th')}>TH</button>
+          </div>
+          <Button variant="default" size="sm" className="ml-2" onClick={()=>{window.location.href = `/${locale}/contact/`;}}>Anfrage</Button>
         </nav>
         <button onClick={()=>setOpen(!open)} className="md:hidden p-2 rounded-xl border border-gray-200">
           <Menu size={18}/>
@@ -27,14 +44,12 @@ export default function NavBar({ locale='de' }: { locale?: 'de'|'en'|'th' }) {
       </div>
       {open && (
         <div className="md:hidden border-t px-4 pb-4 grid gap-3">
-          <a href={link('properties')} className="text-sm">Immobilien</a>
-          <a href={link('services')} className="text-sm">Service</a>
-          <a href={link('districts')} className="text-sm">Stadtteile</a>
-          <a href={link('contact')} className="text-sm">Kontakt</a>
-          <div className="flex gap-3">
-            <a href="/de/" className="text-sm">DE</a>
-            <a href="/en/" className="text-sm">EN</a>
-            <a href="/th/" className="text-sm">TH</a>
+          {nav.map(item => <a key={item.href} href={item.href} className={cn('text-sm', isActive(item.href) && 'font-semibold underline')}>{item.label}</a>)}
+          <div className="flex gap-3 items-center">
+            <Globe size={16} className="opacity-70" />
+            <button className="text-sm underline" onClick={()=>switchLocale('de')}>DE</button>
+            <button className="text-sm underline" onClick={()=>switchLocale('en')}>EN</button>
+            <button className="text-sm underline" onClick={()=>switchLocale('th')}>TH</button>
           </div>
         </div>
       )}

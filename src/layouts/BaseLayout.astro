@@ -57,9 +57,30 @@ const year = new Date().getFullYear();
       <slot />
     </main>
     <footer class="border-t">
-      <div class="max-w-7xl mx-auto px-4 py-8 text-sm text-gray-500">
-        © {new Date().getFullYear()} Weib-Coding · Pattaya
+      <div class="max-w-7xl mx-auto px-4 py-10 text-sm grid md:grid-cols-4 gap-6">
+        <div>
+          <div class="font-semibold">Weib-Coding</div>
+          <div class="text-gray-600 mt-2">Pattaya · Thailand</div>
+        </div>
+        <div class="space-y-2">
+          <div class="font-semibold">Site</div>
+          <a class="block text-gray-600 hover:underline" href="/de/">Start</a>
+          <a class="block text-gray-600 hover:underline" href="/de/properties/">Immobilien</a>
+          <a class="block text-gray-600 hover:underline" href="/de/services/">Service</a>
+          <a class="block text-gray-600 hover:underline" href="/de/districts/">Stadtteile</a>
+        </div>
+        <div class="space-y-2">
+          <div class="font-semibold">Unternehmen</div>
+          <a class="block text-gray-600 hover:underline" href="/de/about/">Über uns</a>
+          <a class="block text-gray-600 hover:underline" href="/de/contact/">Kontakt</a>
+        </div>
+        <div class="space-y-2">
+          <div class="font-semibold">Rechtliches</div>
+          <a class="block text-gray-600 hover:underline" href="/de/legal/impressum/">Impressum</a>
+          <a class="block text-gray-600 hover:underline" href="/de/legal/privacy/">Datenschutz</a>
+        </div>
       </div>
+      <div class="border-t text-center text-xs text-gray-500 py-4">© 2025 Weib-Coding</div>
     </footer>
     <Analytics />
     

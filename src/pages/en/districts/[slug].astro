@@ -1,0 +1,25 @@
+---
+import Base from "../../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const districts = [
+    { slug: 'pattaya-beach' },
+    { slug: 'jomtien' },
+    { slug: 'naklua' }
+  ];
+  return districts.map(district => ({
+    params: { slug: district.slug },
+    props: { slug: district.slug }
+  }));
+}
+
+const { slug } = Astro.props;
+const names:any = {"pattaya-beach":"Pattaya Beach","jomtien":"Jomtien","naklua":"Naklua"};
+const name = names[slug] ?? slug;
+---
+<Base lang="en" title={`${name} – District in Pattaya`} description={`Info about ${name} in Pattaya.`}>
+  <section class="prose"><h1>{name}</h1>
+    <p>{name} is a sought-after area in Pattaya.</p>
+    <p><a class="underline" href="/en/properties/">View properties in {name}</a></p>
+  </section>
+</Base>

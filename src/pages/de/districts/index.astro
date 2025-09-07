@@ -1,0 +1,17 @@
+---
+import Base from "../../../layouts/BaseLayout.astro";
+import { routes } from "../../../lib/routes";
+const districts = [
+  { slug:'pattaya-beach', name:'Pattaya Beach' },
+  { slug:'jomtien', name:'Jomtien' },
+  { slug:'naklua', name:'Naklua' }
+];
+---
+<Base lang="de" title="Stadtteile – Pattaya" description="Überblick über die Stadtteile in Pattaya.">
+  <section class="prose">
+    <h1>Stadtteile</h1>
+    <ul>
+      {districts.map(d => <li><a class="underline" href={routes.distDetail('de', d.slug)}>{d.name}</a></li>)}
+    </ul>
+  </section>
+</Base>
