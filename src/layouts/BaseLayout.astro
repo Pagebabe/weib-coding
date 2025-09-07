@@ -62,5 +62,27 @@ const year = new Date().getFullYear();
       </div>
     </footer>
     <Analytics />
+    
+    <!-- Google Analytics 4 (optional) -->
+    <script type="text/partytown">
+      gtag('config', 'GA_MEASUREMENT_ID', {
+        page_title: document.title,
+        page_location: window.location.href
+      });
+    </script>
+    
+    <!-- Performance Monitoring -->
+    <script>
+      // Core Web Vitals Monitoring (optional)
+      if (typeof window !== 'undefined' && 'performance' in window) {
+        // Basic performance monitoring
+        window.addEventListener('load', () => {
+          const perfData = performance.getEntriesByType('navigation')[0];
+          if (perfData) {
+            console.log('Page Load Time:', perfData.loadEventEnd - perfData.loadEventStart, 'ms');
+          }
+        });
+      }
+    </script>
   </body>
 </html>
