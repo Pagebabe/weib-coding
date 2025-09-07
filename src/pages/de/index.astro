@@ -35,7 +35,7 @@ const latestProps = featuredProps.slice(0, 3);
       {latestProps.map(prop => (
         <a href={prop.url} class="block group">
           <div class="bg-white rounded-xl shadow-sm border overflow-hidden hover:shadow-lg transition-shadow">
-            <img src={prop.cover || '/images/placeholder.jpg'} alt={prop.title} class="w-full h-48 object-cover" />
+            <img src={prop.cover || '/images/placeholder.jpg'} alt={prop.title} class="w-full h-48 object-cover" loading="lazy" decoding="async" />
             <div class="p-6">
               <h3 class="font-semibold text-lg mb-2 group-hover:text-blue-600 transition-colors">
                 {prop.title}

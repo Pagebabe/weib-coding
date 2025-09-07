@@ -2,6 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
-:root { color-scheme: light; }
-@keyframes fadein { from { opacity: 0; transform: translateY(6px)} to { opacity: 1; transform: translateY(0)} }
-@keyframes cardin { from { opacity: 0; transform: translateY(8px)} to { opacity: 1; transform: translateY(0)} }
+:root { 
+  color-scheme: light; 
+}
+
+/* Performance-optimierte Animationen */
+@keyframes fadein { 
+  from { opacity: 0; transform: translateY(6px)} 
+  to { opacity: 1; transform: translateY(0)} 
+}
+
+@keyframes cardin { 
+  from { opacity: 0; transform: translateY(8px)} 
+  to { opacity: 1; transform: translateY(0)} 
+}
+
+/* Performance-Optimierungen */
+img {
+  content-visibility: auto;
+}
+
+/* Smooth scrolling für bessere UX */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Optimierte Font-Loading */
+@font-face {
+  font-display: swap;
+}
