@@ -73,39 +73,85 @@ const description = "Professionelle Immobilienberatung in Pattaya, Thailand. Ver
         }
         
         .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                        url('https://images.unsplash.com/photo-1544984243-ec57ea16fe25?w=1920&h=1080&fit=crop&crop=center');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             color: white;
             padding: 120px 0 80px;
             text-align: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
         }
         
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
             font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            line-height: 1.2;
         }
         
         .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .cta-button {
             display: inline-block;
-            background: #fff;
-            color: #2563eb;
-            padding: 15px 30px;
-            border-radius: 8px;
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            padding: 18px 36px;
+            border-radius: 12px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.1rem;
-            transition: transform 0.3s, box-shadow 0.3s;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+            border: 2px solid transparent;
         }
         
         .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+            background: linear-gradient(135deg, #1d4ed8, #1e40af);
+        }
+        
+        .stats {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #1e293b, #334155);
+            color: white;
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .stat-item {
+            padding: 1rem;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #60a5fa;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
         }
         
         .features {
@@ -140,16 +186,23 @@ const description = "Professionelle Immobilienberatung in Pattaya, Thailand. Ver
         }
         
         .feature-icon {
-            width: 60px;
-            height: 60px;
-            background: #2563eb;
-            border-radius: 50%;
-            margin: 0 auto 1rem;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            border-radius: 20px;
+            margin: 0 auto 1.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 2rem;
             color: white;
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(37, 99, 235, 0.4);
         }
         
         .feature-card h3 {
@@ -195,12 +248,26 @@ const description = "Professionelle Immobilienberatung in Pattaya, Thailand. Ver
         .property-image {
             width: 100%;
             height: 250px;
-            background: linear-gradient(45deg, #e2e8f0, #cbd5e1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #64748b;
-            font-size: 1.1rem;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .property-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(0,0,0,0.1), rgba(0,0,0,0.3));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .property-card:hover .property-image::before {
+            opacity: 1;
         }
         
         .property-content {
@@ -226,10 +293,39 @@ const description = "Professionelle Immobilienberatung in Pattaya, Thailand. Ver
         }
         
         footer {
-            background: #1e293b;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
             color: white;
+            padding: 3rem 0 2rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: #60a5fa;
+        }
+        
+        .footer-section p, .footer-section a {
+            color: #cbd5e1;
+            text-decoration: none;
+            line-height: 1.6;
+        }
+        
+        .footer-section a:hover {
+            color: #60a5fa;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #334155;
+            padding-top: 2rem;
             text-align: center;
-            padding: 2rem 0;
+            color: #94a3b8;
         }
         
         @media (max-width: 768px) {
@@ -269,6 +365,31 @@ const description = "Professionelle Immobilienberatung in Pattaya, Thailand. Ver
             </div>
         </section>
 
+        <section class="stats">
+            <div class="container">
+                <h2>Unsere Erfolge</h2>
+                <p>Vertrauen Sie auf unsere langjährige Erfahrung</p>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Zufriedene Kunden</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">1000+</div>
+                        <div class="stat-label">Verkaufte Immobilien</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Jahre Erfahrung</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Kundenzufriedenheit</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section class="features" id="services">
             <div class="container">
                 <h2>Unsere Services</h2>
@@ -297,7 +418,7 @@ const description = "Professionelle Immobilienberatung in Pattaya, Thailand. Ver
                 <h2>Aktuelle Angebote</h2>
                 <div class="properties-grid">
                     <div class="property-card">
-                        <div class="property-image">Beachfront Villa</div>
+                        <div class="property-image" style="background-image: url('https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&h=600&fit=crop&crop=center')"></div>
                         <div class="property-content">
                             <h3 class="property-title">Beachfront Villa Jomtien</h3>
                             <p class="property-location">Jomtien Beach • Villa • 4 Schlafzimmer</p>
@@ -305,7 +426,7 @@ const description = "Professionelle Immobilienberatung in Pattaya, Thailand. Ver
                         </div>
                     </div>
                     <div class="property-card">
-                        <div class="property-image">Familienhaus</div>
+                        <div class="property-image" style="background-image: url('https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=800&h=600&fit=crop&crop=center')"></div>
                         <div class="property-content">
                             <h3 class="property-title">Familienhaus Naklua</h3>
                             <p class="property-location">Naklua • Haus • 4 Schlafzimmer</p>
@@ -313,7 +434,7 @@ const description = "Professionelle Immobilienberatung in Pattaya, Thailand. Ver
                         </div>
                     </div>
                     <div class="property-card">
-                        <div class="property-image">Luxus Condo</div>
+                        <div class="property-image" style="background-image: url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop&crop=center')"></div>
                         <div class="property-content">
                             <h3 class="property-title">Luxus Condo Pattaya</h3>
                             <p class="property-location">Central Pattaya • Condo • 2 Schlafzimmer</p>
@@ -327,8 +448,27 @@ const description = "Professionelle Immobilienberatung in Pattaya, Thailand. Ver
 
     <footer id="contact">
         <div class="container">
-            <p>&copy; 2025 Weib-Coding • Pattaya, Thailand</p>
-            <p>Professionelle Immobilienberatung</p>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Weib-Coding</h3>
+                    <p>Ihr vertrauensvoller Partner für Immobilien in Pattaya. Professionelle Beratung für Verkauf, Vermietung und Service.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Schnelle Links</h3>
+                    <p><a href="#properties">Immobilien</a></p>
+                    <p><a href="#services">Services</a></p>
+                    <p><a href="#contact">Kontakt</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Kontakt</h3>
+                    <p>📞 +66 38 123 456</p>
+                    <p>📧 info@weib-coding.com</p>
+                    <p>📍 Pattaya, Thailand</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Weib-Coding • Pattaya, Thailand • Alle Rechte vorbehalten</p>
+            </div>
         </div>
     </footer>
 
