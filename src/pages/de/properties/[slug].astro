@@ -1,7 +1,17 @@
 ---
 import Base from "../../../layouts/BaseLayout.astro";
-import { loadPropBySlug } from "../../../lib/loadProps";
-const slug = Astro.params.slug!;
+import { loadPropBySlug, loadProps } from "../../../lib/loadProps";
+
+export async function getStaticPaths() {
+  // Für jetzt: statische Liste der verfügbaren Properties
+  const slugs = ['park-villa-privatpool'];
+  return slugs.map(slug => ({
+    params: { slug },
+    props: { slug }
+  }));
+}
+
+const { slug } = Astro.props;
 const p = await loadPropBySlug('de', slug);
 if (!p) throw new Error("Property not found: " + slug);
 
