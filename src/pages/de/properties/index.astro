@@ -74,12 +74,22 @@ const seoDescription = `Immobilien in Pattaya entdecken. Villen, Condos, Häuser
         <input class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" type="search" id="q" placeholder="Ort, Features..." />
       </div>
       <div class="flex items-end">
-        <button type="button" id="clear-filters" class="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg transition-colors">Filter zurücksetzen</button>
+        <button 
+          type="button" 
+          id="clear-filters" 
+          class="w-full px-4 py-2 rounded-lg transition-colors hover:opacity-80"
+          style={{
+            backgroundColor: 'var(--color-muted)',
+            color: 'white'
+          }}
+        >
+          Filter zurücksetzen
+        </button>
       </div>
     </form>
     <div class="mt-4 flex justify-between items-center">
-      <span id="result-count" class="text-sm text-gray-600">{props.length} Immobilien gefunden</span>
-      <button type="button" id="clear-filters" class="text-sm text-blue-600 hover:text-blue-800">Filter zurücksetzen</button>
+      <span id="result-count" class="text-sm" style="color: var(--color-muted);">{props.length} Immobilien gefunden</span>
+      <button type="button" id="clear-filters" class="text-sm transition-colors hover:opacity-80" style="color: var(--color-primary);">Filter zurücksetzen</button>
     </div>
   </div>
 

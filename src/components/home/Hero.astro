@@ -3,17 +3,39 @@ import { Button } from "../ui/button";
 const { title, subtitle, image, locale='de', alt = "Pattaya Beachfront", ctaPrimary, ctaSecondary } = Astro.props;
 const link = (l:string) => `/${locale}/${l}/`;
 ---
-<section class="relative overflow-hidden rounded-3xl md:rounded-[2rem] border border-gray-200">
+<section class="relative overflow-hidden rounded-3xl md:rounded-[2rem] border" style="border-color: var(--card-border);">
   <link rel="preload" as="image" href={image} imagesrcset={`${image} 1200w`} imagesizes="(min-width: 1024px) 1200px, 100vw" />
   <img src={image} alt={alt} class="w-full h-[320px] md:h-[460px] object-cover" loading="eager" fetchpriority="high" />
   <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent"></div>
   <div class="absolute inset-0 flex items-end">
     <div class="container pb-8">
-      <h1 class="text-white drop-shadow">{title}</h1>
+      <h1 class="text-white drop-shadow text-3xl md:text-4xl font-bold">{title}</h1>
       <p class="mt-2 text-white/90 text-lg md:text-xl">{subtitle}</p>
       <div class="mt-6 flex gap-3">
-        <a href={link('properties')}><Button size="lg" class="rounded-2xl">{ctaPrimary || 'Immobilien finden'}</Button></a>
-        <a href={link('contact')}><Button size="lg" variant="outline" class="bg-white/90 backdrop-blur rounded-2xl">{ctaSecondary || 'Anfrage senden'}</Button></a>
+        <a href={link('properties')}>
+          <Button 
+            size="lg" 
+            style={{
+              backgroundColor: 'var(--color-primary)',
+              borderColor: 'var(--color-primary)'
+            }}
+          >
+            {ctaPrimary || 'Immobilien finden'}
+          </Button>
+        </a>
+        <a href={link('contact')}>
+          <Button 
+            size="lg" 
+            variant="outline" 
+            class="bg-white/90 backdrop-blur"
+            style={{
+              borderColor: 'white',
+              color: 'var(--color-text)'
+            }}
+          >
+            {ctaSecondary || 'Anfrage senden'}
+          </Button>
+        </a>
       </div>
     </div>
   </div>

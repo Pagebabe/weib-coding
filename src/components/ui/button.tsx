@@ -4,13 +4,13 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from './utils';
 
 const variants = cva(
-  'inline-flex items-center justify-center whitespace-nowrap rounded-2xl text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/10 disabled:pointer-events-none disabled:opacity-50',
+  'inline-flex items-center justify-center whitespace-nowrap rounded-xl text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/10 disabled:pointer-events-none disabled:opacity-50',
   {
     variants: {
       variant: {
-        default: 'bg-gray-900 text-white hover:bg-black',
-        outline: 'border border-gray-200 hover:bg-gray-50',
-        ghost: 'hover:bg-gray-100',
+        default: 'text-white hover:opacity-90',
+        outline: 'border hover:opacity-80',
+        ghost: 'hover:opacity-80',
       },
       size: { sm:'h-9 px-3', md:'h-10 px-4', lg:'h-11 px-5 text-base' },
     },
