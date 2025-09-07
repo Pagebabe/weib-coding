@@ -1,14 +1,42 @@
 ---
 import NavBar from "../components/NavBar.tsx";
-const { title = "Weib-Coding – Immobilien Pattaya", description = "Immobilien, Beratung und Service in Pattaya", lang = "de" } = Astro.props;
+const { 
+  title = "Weib-Coding – Immobilien Pattaya", 
+  description = "Immobilien, Beratung und Service in Pattaya", 
+  lang = "de",
+  image = "https://weib-coding.vercel.app/images/og-default.jpg",
+  url = Astro.url.href
+} = Astro.props;
 const year = new Date().getFullYear();
 ---
 <html lang={lang}>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:locale" content={lang === 'de' ? 'de_DE' : lang === 'en' ? 'en_US' : 'th_TH'} />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={url} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={image} />
+    
+    <!-- Additional SEO -->
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Weib-Coding Real Estate" />
+    <meta name="keywords" content="Immobilien, Pattaya, Thailand, Villa, Condo, Haus, Apartment, Verkauf, Vermietung" />
+    <link rel="canonical" href={url} />
+    
     <link rel="stylesheet" href="/styles.css" />
     <script type="application/ld+json">
 {JSON.stringify({
