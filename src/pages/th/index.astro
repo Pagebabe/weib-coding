@@ -3,18 +3,21 @@ import Base from "../../layouts/BaseLayout.astro";
 import common from "../../i18n/th/common.json";
 import Hero from "../../components/home/Hero.astro";
 import Section from "../../components/home/Section.astro";
+import FeaturedSplit from "../../components/home/FeaturedSplit.astro";
 import PropertyGrid from "../../components/home/PropertyGrid.astro";
 import { loadProps } from "../../lib/loadProps";
 import ServiceCard from "../../components/home/ServiceCard";
 import { Home, MapPin, Handshake } from "lucide-react";
-const featured = (await loadProps('th')).slice(0, 6);
+const all = await loadProps('th');
+const featured = all.slice(0, 6);
+const top4 = all.slice(0, 4);
 ---
 <Base lang="th" title="Weib-Coding – อสังหาฯ พัทยา" description="ขาย · เช่า · บริการ ที่พัทยา ประเทศไทย">
   <div class="container section pt-6">
     <Hero locale="th" title={common.heroTitle} subtitle={common.heroSubtitle} image="/images/hero/th.jpg" />
   </div>
   <Section title="ทรัพย์ล่าสุด" subtitle="ค้นหาทรัพย์ใหม่ล่าสุดของเราในพัทยา">
-    <PropertyGrid items={featured} />
+    {top4.length >= 4 ? <FeaturedSplit items={top4} /> : <PropertyGrid items={featured} />}
     <div class="mt-6"><a class="underline" href="/th/properties/">ดูทรัพย์ทั้งหมด</a></div>
   </Section>
   <Section title="บริการของเรา" subtitle="บริการครบวงจรสำหรับอสังหาฯ ของคุณ">

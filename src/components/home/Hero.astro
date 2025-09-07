@@ -1,10 +1,11 @@
 ---
 import { Button } from "../ui/button";
-const { title, subtitle, image, locale='de' } = Astro.props;
+const { title, subtitle, image, locale='de', alt = "Pattaya Beachfront" } = Astro.props;
 const link = (l:string) => `/${locale}/${l}/`;
 ---
 <section class="relative overflow-hidden rounded-3xl md:rounded-[2rem] border border-gray-200">
-  <img src={image} alt="" class="w-full h-[320px] md:h-[460px] object-cover" />
+  <link rel="preload" as="image" href={image} imagesrcset={`${image} 1200w`} imagesizes="(min-width: 1024px) 1200px, 100vw" />
+  <img src={image} alt={alt} class="w-full h-[320px] md:h-[460px] object-cover" loading="eager" fetchpriority="high" />
   <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent"></div>
   <div class="absolute inset-0 flex items-end">
     <div class="container pb-8">
