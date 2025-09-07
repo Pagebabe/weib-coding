@@ -12,73 +12,116 @@ const seoDescription = `Entdecken Sie unsere Immobilien in Pattaya: Villen, Cond
 <Base lang="de" title={seoTitle} description={seoDescription}>
   <h1 class="text-2xl font-semibold mb-4">Immobilien</h1>
 
-  <form id="filters" class="grid md:grid-cols-5 gap-3 mb-6">
-    <input class="border rounded px-3 py-2" type="number" id="min" placeholder="Preis min (THB)" />
-    <input class="border rounded px-3 py-2" type="number" id="max" placeholder="Preis max (THB)" />
-    <select class="border rounded px-3 py-2" id="type">
-      <option value="">Typ</option>
-      <option value="villa">Villa</option>
-      <option value="condo">Condo</option>
-      <option value="house">Haus</option>
-      <option value="apartment">Apartment</option>
-    </select>
-    <select class="border rounded px-3 py-2" id="bed">
-      <option value="">SZ</option>
-      <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
-    </select>
-    <input class="border rounded px-3 py-2 md:col-span-1" type="search" id="q" placeholder="Suche…" />
-  </form>
+  <!-- Erweiterte Filter mit besseren Komponenten -->
+  <div class="bg-white rounded-xl shadow-sm border p-6 mb-8">
+    <h2 class="text-lg font-semibold mb-4">Immobilien filtern</h2>
+    <form id="filters" class="grid md:grid-cols-5 gap-4">
+      <div>
+        <label for="min" class="block text-sm font-medium text-gray-700 mb-1">Preis min (THB)</label>
+        <input class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" type="number" id="min" placeholder="z.B. 5000000" />
+      </div>
+      <div>
+        <label for="max" class="block text-sm font-medium text-gray-700 mb-1">Preis max (THB)</label>
+        <input class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" type="number" id="max" placeholder="z.B. 20000000" />
+      </div>
+      <div>
+        <label for="type" class="block text-sm font-medium text-gray-700 mb-1">Immobilientyp</label>
+        <select class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" id="type">
+          <option value="">Alle Typen</option>
+          <option value="villa">Villa</option>
+          <option value="condo">Condo</option>
+          <option value="house">Haus</option>
+          <option value="apartment">Apartment</option>
+        </select>
+      </div>
+      <div>
+        <label for="bed" class="block text-sm font-medium text-gray-700 mb-1">Schlafzimmer</label>
+        <select class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" id="bed">
+          <option value="">Alle</option>
+          <option value="1">1+</option>
+          <option value="2">2+</option>
+          <option value="3">3+</option>
+          <option value="4">4+</option>
+          <option value="5">5+</option>
+        </select>
+      </div>
+      <div>
+        <label for="q" class="block text-sm font-medium text-gray-700 mb-1">Suche</label>
+        <input class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" type="search" id="q" placeholder="Ort, Features..." />
+      </div>
+    </form>
+    <div class="mt-4 flex justify-between items-center">
+      <span id="result-count" class="text-sm text-gray-600">{props.length} Immobilien gefunden</span>
+      <button type="button" id="clear-filters" class="text-sm text-blue-600 hover:text-blue-800">Filter zurücksetzen</button>
+    </div>
+  </div>
 
   <div id="list" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
     {props.map(p => <PropertyCard client:load p={p} />)}
   </div>
 
-  <script type="module">
-    import Fuse from "https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.mjs";
-    const data = {data};
-    const listEl = document.getElementById('list');
-    const els = {
-      min: document.getElementById('min'),
-      max: document.getElementById('max'),
-      type: document.getElementById('type'),
-      bed: document.getElementById('bed'),
-      q: document.getElementById('q')
-    };
-    const fuse = new Fuse(data, { keys: ['title','location','description','features'], threshold: 0.3 });
+       <script type="module">
+         import Fuse from "https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.mjs";
+         const data = {data};
+         const listEl = document.getElementById('list');
+         const resultCountEl = document.getElementById('result-count');
+         const els = {
+           min: document.getElementById('min'),
+           max: document.getElementById('max'),
+           type: document.getElementById('type'),
+           bed: document.getElementById('bed'),
+           q: document.getElementById('q')
+         };
+         const fuse = new Fuse(data, { keys: ['title','location','description','features'], threshold: 0.3 });
 
-    const render = (items) => {
-      listEl.innerHTML = items.map(p => `
-        <article class="border rounded-xl overflow-hidden hover:shadow">
-          <a href="${p.url}" class="block">
-            <img src="${p.cover || ''}" alt="${p.title}" class="w-full aspect-[4/3] object-cover" />
-            <div class="p-4">
-              <h3 class="font-semibold">${p.title}</h3>
-              <p class="text-sm text-gray-600">${p.location || ''} · ${p.type} · ${p.bedrooms} BR</p>
-              <p class="mt-1 font-mono">${new Intl.NumberFormat('de-DE').format(p.price_thb)} THB</p>
-            </div>
-          </a>
-        </article>
-      `).join('');
-    };
+         const render = (items) => {
+           listEl.innerHTML = items.map(p => `
+             <article class="border rounded-xl overflow-hidden hover:shadow-lg transition-shadow">
+               <a href="${p.url}" class="block">
+                 <img src="${p.cover || ''}" alt="${p.title}" class="w-full aspect-[4/3] object-cover" loading="lazy" />
+                 <div class="p-4">
+                   <h3 class="font-semibold text-lg mb-2">${p.title}</h3>
+                   <p class="text-sm text-gray-600 mb-2">${p.location || ''} · ${p.type} · ${p.bedrooms} BR</p>
+                   <p class="text-xl font-bold text-blue-600">${new Intl.NumberFormat('de-DE').format(p.price_thb)} THB</p>
+                   ${p.features && p.features.length > 0 ? `<div class="mt-2 flex flex-wrap gap-1">
+                     ${p.features.slice(0, 3).map(f => `<span class="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">${f}</span>`).join('')}
+                   </div>` : ''}
+                 </div>
+               </a>
+             </article>
+           `).join('');
+           
+           // Update result count
+           resultCountEl.textContent = `${items.length} Immobilien gefunden`;
+         };
 
-    const filter = () => {
-      const min = parseInt(els.min.value || '0', 10);
-      const max = parseInt(els.max.value || '0', 10);
-      const type = els.type.value;
-      const bed = parseInt(els.bed.value || '0', 10);
-      const q = els.q.value.trim();
+         const filter = () => {
+           const min = parseInt(els.min.value || '0', 10);
+           const max = parseInt(els.max.value || '0', 10);
+           const type = els.type.value;
+           const bed = parseInt(els.bed.value || '0', 10);
+           const q = els.q.value.trim();
 
-      let items = data.slice();
-      if (min) items = items.filter(p => (p.price_thb || 0) >= min);
-      if (max) items = items.filter(p => (p.price_thb || 0) <= max);
-      if (type) items = items.filter(p => p.type === type);
-      if (bed) items = items.filter(p => (p.bedrooms || 0) >= bed);
-      if (q) items = fuse.search(q).map(r => r.item).filter(p => items.includes(p));
+           let items = data.slice();
+           if (min) items = items.filter(p => (p.price_thb || 0) >= min);
+           if (max) items = items.filter(p => (p.price_thb || 0) <= max);
+           if (type) items = items.filter(p => p.type === type);
+           if (bed) items = items.filter(p => (p.bedrooms || 0) >= bed);
+           if (q) items = fuse.search(q).map(r => r.item).filter(p => items.includes(p));
 
-      render(items);
-    };
+           render(items);
+         };
 
-    Object.values(els).forEach(el => el.addEventListener('input', filter));
-    render(data);
-  </script>
+         const clearFilters = () => {
+           Object.values(els).forEach(el => el.value = '');
+           render(data);
+         };
+
+         // Event listeners
+         Object.values(els).forEach(el => el.addEventListener('input', filter));
+         document.getElementById('clear-filters').addEventListener('click', clearFilters);
+         
+         // Initial render
+         render(data);
+       </script>
 </Base>

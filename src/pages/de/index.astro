@@ -34,16 +34,35 @@ const latestProps = featuredProps.slice(0, 3);
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
       {latestProps.map(prop => (
         <a href={prop.url} class="block group">
-          <div class="bg-white rounded-xl shadow-sm border overflow-hidden hover:shadow-lg transition-shadow">
-            <img src={prop.cover || '/images/placeholder.jpg'} alt={prop.title} class="w-full h-48 object-cover" loading="lazy" decoding="async" />
+          <div class="bg-white rounded-xl shadow-sm border overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+            <div class="relative">
+              <img src={prop.cover || '/images/placeholder.jpg'} alt={prop.title} class="w-full h-48 object-cover" loading="lazy" decoding="async" />
+              <div class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full text-xs font-medium text-gray-700">
+                {prop.type}
+              </div>
+            </div>
             <div class="p-6">
               <h3 class="font-semibold text-lg mb-2 group-hover:text-blue-600 transition-colors">
                 {prop.title}
               </h3>
-              <p class="text-gray-600 text-sm mb-3">{prop.location} · {prop.type} · {prop.bedrooms} BR</p>
-              <p class="text-2xl font-bold text-blue-600">
+              <p class="text-gray-600 text-sm mb-3 flex items-center">
+                <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                </svg>
+                {prop.location} · {prop.bedrooms} BR
+              </p>
+              <p class="text-2xl font-bold text-blue-600 mb-3">
                 {new Intl.NumberFormat('de-DE').format(prop.price_thb)} THB
               </p>
+              {prop.features && prop.features.length > 0 && (
+                <div class="flex flex-wrap gap-1">
+                  {prop.features.slice(0, 2).map(feature => (
+                    <span class="text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded-full">
+                      {feature}
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </a>
