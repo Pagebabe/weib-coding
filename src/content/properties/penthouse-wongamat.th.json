@@ -1,0 +1,25 @@
+{
+  "slug": "penthouse-wongamat",
+  "price_thb": 18500000,
+  "type": "condo",
+  "bedrooms": 3,
+  "living_sqm": 180,
+  "land_sqm": 0,
+  "location": "Wongamat",
+  "ownership": "Freehold",
+  "features": [
+    "Meerblick",
+    "Privatpool",
+    "Rooftop",
+    "Concierge"
+  ],
+  "cover": "/images/sample/penthouse-main.jpg",
+  "images": [
+    "/images/sample/penthouse-main.jpg",
+    "/images/sample/penthouse-view.jpg"
+  ],
+  "url": "/th/properties/penthouse-wongamat/",
+  "title": "Penthouse Wongamat Beach",
+  "description": "Luxury penthouse with sea view.",
+  "body": "Luxury penthouse with sea view."
+}

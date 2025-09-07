@@ -1,0 +1,25 @@
+{
+  "slug": "studio-condo-central",
+  "price_thb": 2800000,
+  "type": "condo",
+  "bedrooms": 1,
+  "living_sqm": 35,
+  "land_sqm": 0,
+  "location": "Pattaya Central",
+  "ownership": "Freehold",
+  "features": [
+    "Zentrale Lage",
+    "Möbliert",
+    "Pool",
+    "Fitness"
+  ],
+  "cover": "/images/sample/studio-main.jpg",
+  "images": [
+    "/images/sample/studio-main.jpg",
+    "/images/sample/studio-living.jpg"
+  ],
+  "url": "/th/properties/studio-condo-central/",
+  "title": "Studio Condo Central",
+  "description": "Compact studio in central location.",
+  "body": "Compact studio in central location."
+}

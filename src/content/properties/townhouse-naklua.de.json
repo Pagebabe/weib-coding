@@ -1,0 +1,25 @@
+{
+  "slug": "townhouse-naklua",
+  "price_thb": 7500000,
+  "type": "house",
+  "bedrooms": 3,
+  "living_sqm": 150,
+  "land_sqm": 200,
+  "location": "Naklua",
+  "ownership": "Thai Quota",
+  "features": [
+    "Garten",
+    "Garage",
+    "Terrasse",
+    "Schule nah"
+  ],
+  "cover": "/images/sample/townhouse-main.jpg",
+  "images": [
+    "/images/sample/townhouse-main.jpg",
+    "/images/sample/townhouse-garden.jpg"
+  ],
+  "url": "/de/properties/townhouse-naklua/",
+  "title": "Townhouse Naklua",
+  "description": "Moderne Townhouse in Naklua.",
+  "body": "Moderne Townhouse in Naklua."
+}

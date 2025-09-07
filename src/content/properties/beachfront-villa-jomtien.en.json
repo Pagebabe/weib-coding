@@ -1,0 +1,25 @@
+{
+  "slug": "beachfront-villa-jomtien",
+  "price_thb": 22000000,
+  "type": "villa",
+  "bedrooms": 4,
+  "living_sqm": 320,
+  "land_sqm": 500,
+  "location": "Jomtien Beach",
+  "ownership": "Thai Quota",
+  "features": [
+    "Direkt am Strand",
+    "Privatpool",
+    "Garten",
+    "Garage"
+  ],
+  "cover": "/images/sample/beachfront-main.jpg",
+  "images": [
+    "/images/sample/beachfront-main.jpg",
+    "/images/sample/beachfront-garden.jpg"
+  ],
+  "url": "/en/properties/beachfront-villa-jomtien/",
+  "title": "Beachfront Villa Jomtien",
+  "description": "Villa directly on Jomtien beach.",
+  "body": "Villa directly on Jomtien beach."
+}
