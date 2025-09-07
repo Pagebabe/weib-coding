@@ -1,25 +1,50 @@
 ---
 import Base from "../../../layouts/BaseLayout.astro";
-import list from "../../../content/properties/_seed.de.json";
-const slug = Astro.params.slug;
-const p = list.find(x => x.slug === slug);
+import { loadPropBySlug } from "../../../lib/loadProps";
+const slug = Astro.params.slug!;
+const p = await loadPropBySlug('de', slug);
 if (!p) throw new Error("Property not found: " + slug);
+
+const jsonLd = {
+  "@context":"https://schema.org",
+  "@type":"RealEstateListing",
+  "name": p.title,
+  "url": "https://example.com" + p.url,
+  "image": p.images || [],
+  "description": p.description || p.title,
+  "offers": {
+    "@type":"Offer",
+    "priceCurrency":"THB",
+    "price": String(p.price_thb || 0),
+    "availability":"https://schema.org/InStock"
+  },
+  "address": {
+    "@type":"PostalAddress",
+    "addressLocality": p.location || "Pattaya",
+    "addressCountry": "TH"
+  },
+  "category": p.type
+};
 ---
 <Base lang="de" title={`${p.title} – Immobilien in Pattaya`} description={p.description}>
+  <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
   <article class="prose max-w-none">
     <h1>{p.title}</h1>
     <p class="text-sm text-gray-600">{p.location} · {p.type} · {p.bedrooms} Schlafzimmer</p>
     <div class="grid md:grid-cols-2 gap-4 my-6">
-      {p.images.map(src => <img src={src} alt={p.title} class="w-full rounded-lg" />)}
+      {p.images?.map(src => <img src={src} alt={p.title} class="w-full rounded-lg" />)}
     </div>
     <h2>Daten & Fakten</h2>
     <ul>
       <li>Preis: {new Intl.NumberFormat('de-DE').format(p.price_thb)} THB</li>
-      <li>Wohnfläche: {p.living_sqm} m² · Grundstück: {p.land_sqm} m²</li>
-      <li>Eigentum: {p.ownership}</li>
-      <li>Features: {p.features.join(", ")}</li>
+      {p.living_sqm && <li>Wohnfläche: {p.living_sqm} m²</li>}
+      {p.land_sqm && <li>Grundstück: {p.land_sqm} m²</li>}
+      {p.ownership && <li>Eigentum: {p.ownership}</li>}
+      {p.features?.length ? <li>Features: {p.features.join(", ")}</li> : null}
     </ul>
-    <h2>Beschreibung</h2>
-    <p>{p.body}</p>
+    {p.body && <>
+      <h2>Beschreibung</h2>
+      <p set:html={p.body.replace(/\n/g,'<br/>')}></p>
+    </>}
   </article>
 </Base>

@@ -1,0 +1,28 @@
+---
+import Base from "../../../layouts/BaseLayout.astro";
+import { loadPropBySlug } from "../../../lib/loadProps";
+const slug = Astro.params.slug!;
+const p = await loadPropBySlug('th', slug);
+if (!p) throw new Error("Property not found: " + slug);
+---
+<Base lang="th" title={`${p.title} – อสังหาฯ พัทยา`} description={p.description}>
+  <article class="prose max-w-none">
+    <h1>{p.title}</h1>
+    <p class="text-sm text-gray-600">{p.location} · {p.type} · {p.bedrooms} ห้องนอน</p>
+    <div class="grid md:grid-cols-2 gap-4 my-6">
+      {p.images?.map(src => <img src={src} alt={p.title} class="w-full rounded-lg" />)}
+    </div>
+    <h2>ข้อมูลและข้อเท็จจริง</h2>
+    <ul>
+      <li>ราคา: {new Intl.NumberFormat('th-TH').format(p.price_thb)} บาท</li>
+      {p.living_sqm && <li>พื้นที่ใช้สอย: {p.living_sqm} ตร.ม.</li>}
+      {p.land_sqm && <li>ที่ดิน: {p.land_sqm} ตร.ม.</li>}
+      {p.ownership && <li>กรรมสิทธิ์: {p.ownership}</li>}
+      {p.features?.length ? <li>คุณสมบัติ: {p.features.join(", ")}</li> : null}
+    </ul>
+    {p.body && <>
+      <h2>คำอธิบาย</h2>
+      <p set:html={p.body.replace(/\n/g,'<br/>')}></p>
+    </>}
+  </article>
+</Base>

@@ -1,11 +1,80 @@
 ---
 import Base from "../../../layouts/BaseLayout.astro";
 import Card from "../../../components/PropertyCard.astro";
-import props from "../../../content/properties/_seed.de.json";
+import { loadProps } from "../../../lib/loadProps";
+const props = await loadProps('de');
+const data = JSON.stringify(props);
 ---
 <Base lang="de" title="Immobilien – Weib-Coding">
-  <h1 class="text-2xl font-semibold mb-6">Immobilien</h1>
-  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  <h1 class="text-2xl font-semibold mb-4">Immobilien</h1>
+
+  <form id="filters" class="grid md:grid-cols-5 gap-3 mb-6">
+    <input class="border rounded px-3 py-2" type="number" id="min" placeholder="Preis min (THB)" />
+    <input class="border rounded px-3 py-2" type="number" id="max" placeholder="Preis max (THB)" />
+    <select class="border rounded px-3 py-2" id="type">
+      <option value="">Typ</option>
+      <option value="villa">Villa</option>
+      <option value="condo">Condo</option>
+      <option value="house">Haus</option>
+      <option value="apartment">Apartment</option>
+    </select>
+    <select class="border rounded px-3 py-2" id="bed">
+      <option value="">SZ</option>
+      <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+    </select>
+    <input class="border rounded px-3 py-2 md:col-span-1" type="search" id="q" placeholder="Suche…" />
+  </form>
+
+  <div id="list" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
     {props.map(p => <Card p={p} />)}
   </div>
+
+  <script type="module">
+    import Fuse from "https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.mjs";
+    const data = {data};
+    const listEl = document.getElementById('list');
+    const els = {
+      min: document.getElementById('min'),
+      max: document.getElementById('max'),
+      type: document.getElementById('type'),
+      bed: document.getElementById('bed'),
+      q: document.getElementById('q')
+    };
+    const fuse = new Fuse(data, { keys: ['title','location','description','features'], threshold: 0.3 });
+
+    const render = (items) => {
+      listEl.innerHTML = items.map(p => `
+        <article class="border rounded-xl overflow-hidden hover:shadow">
+          <a href="${p.url}" class="block">
+            <img src="${p.cover || ''}" alt="${p.title}" class="w-full aspect-[4/3] object-cover" />
+            <div class="p-4">
+              <h3 class="font-semibold">${p.title}</h3>
+              <p class="text-sm text-gray-600">${p.location || ''} · ${p.type} · ${p.bedrooms} BR</p>
+              <p class="mt-1 font-mono">${new Intl.NumberFormat('de-DE').format(p.price_thb)} THB</p>
+            </div>
+          </a>
+        </article>
+      `).join('');
+    };
+
+    const filter = () => {
+      const min = parseInt(els.min.value || '0', 10);
+      const max = parseInt(els.max.value || '0', 10);
+      const type = els.type.value;
+      const bed = parseInt(els.bed.value || '0', 10);
+      const q = els.q.value.trim();
+
+      let items = data.slice();
+      if (min) items = items.filter(p => (p.price_thb || 0) >= min);
+      if (max) items = items.filter(p => (p.price_thb || 0) <= max);
+      if (type) items = items.filter(p => p.type === type);
+      if (bed) items = items.filter(p => (p.bedrooms || 0) >= bed);
+      if (q) items = fuse.search(q).map(r => r.item).filter(p => items.includes(p));
+
+      render(items);
+    };
+
+    Object.values(els).forEach(el => el.addEventListener('input', filter));
+    render(data);
+  </script>
 </Base>

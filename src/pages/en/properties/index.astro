@@ -1,7 +1,8 @@
 ---
 import Base from "../../../layouts/BaseLayout.astro";
 import Card from "../../../components/PropertyCard.astro";
-import props from "../../../content/properties/_seed.en.json";
+import { loadProps } from "../../../lib/loadProps";
+const props = await loadProps('en');
 ---
 <Base lang="en" title="Properties – Weib-Coding">
   <h1 class="text-2xl font-semibold mb-6">Properties</h1>

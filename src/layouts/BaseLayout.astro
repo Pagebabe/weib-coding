@@ -1,5 +1,6 @@
 ---
 const { title = "Weib-Coding – Immobilien Pattaya", description = "Immobilien, Beratung und Service in Pattaya", lang = "de" } = Astro.props;
+const year = new Date().getFullYear();
 ---
 <html lang={lang}>
   <head>
@@ -8,6 +9,17 @@ const { title = "Weib-Coding – Immobilien Pattaya", description = "Immobilien,
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="stylesheet" href="/styles.css" />
+    <script type="application/ld+json">
+{JSON.stringify({
+  "@context":"https://schema.org",
+  "@type":"Organization",
+  "name":"Weib-Coding Real Estate",
+  "url":"https://example.com",
+  "logo":"https://example.com/images/logo.png",
+  "address":{"@type":"PostalAddress","addressLocality":"Pattaya","addressCountry":"TH"},
+  "sameAs":[]
+})}
+    </script>
   </head>
   <body class="min-h-screen bg-white text-gray-900">
     <header class="max-w-7xl mx-auto px-4 py-5 flex items-center justify-between">
