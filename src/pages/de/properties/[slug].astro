@@ -79,6 +79,8 @@ const breadcrumbItems = [
           class="w-full rounded-lg scale-in" 
           loading="lazy" 
           decoding="async"
+          srcset={`${src} 600w, ${src} 900w, ${src} 1200w`}
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           style="box-shadow: var(--shadow-md);"
         />
       ))}
