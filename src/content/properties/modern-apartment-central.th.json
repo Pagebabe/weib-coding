@@ -1,0 +1,24 @@
+{
+  "slug": "modern-apartment-central",
+  "price_thb": 4200000,
+  "type": "apartment",
+  "bedrooms": 1,
+  "living_sqm": 65,
+  "land_sqm": 0,
+  "location": "Pattaya Central",
+  "ownership": "Freehold",
+  "features": [
+    "Zentrale Lage",
+    "Einkaufszentrum",
+    "BTS"
+  ],
+  "cover": "/images/sample/apartment-main.jpg",
+  "images": [
+    "/images/sample/apartment-main.jpg",
+    "/images/sample/apartment-living.jpg"
+  ],
+  "url": "/th/properties/modern-apartment-central/",
+  "title": "Modern Apartment Central",
+  "description": "Centrally located modern apartment.",
+  "body": "Centrally located modern apartment."
+}

@@ -1,0 +1,24 @@
+{
+  "slug": "family-house-naklua",
+  "price_thb": 6500000,
+  "type": "house",
+  "bedrooms": 4,
+  "living_sqm": 180,
+  "land_sqm": 300,
+  "location": "Naklua",
+  "ownership": "Thai Quota",
+  "features": [
+    "Garten",
+    "Garage",
+    "Schule in der Nähe"
+  ],
+  "cover": "/images/sample/house-main.jpg",
+  "images": [
+    "/images/sample/house-main.jpg",
+    "/images/sample/house-garden.jpg"
+  ],
+  "url": "/th/properties/family-house-naklua/",
+  "title": "Family House Naklua",
+  "description": "Perfect for families with children.",
+  "body": "Perfect for families with children."
+}

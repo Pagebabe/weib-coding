@@ -1,0 +1,25 @@
+{
+  "slug": "luxury-condo-pattaya",
+  "price_thb": 8500000,
+  "type": "condo",
+  "bedrooms": 2,
+  "living_sqm": 120,
+  "land_sqm": 0,
+  "location": "Pattaya Beach",
+  "ownership": "Freehold",
+  "features": [
+    "Meerblick",
+    "Pool",
+    "Fitness",
+    "Concierge"
+  ],
+  "cover": "/images/sample/condo-main.jpg",
+  "images": [
+    "/images/sample/condo-main.jpg",
+    "/images/sample/condo-view.jpg"
+  ],
+  "url": "/de/properties/luxury-condo-pattaya/",
+  "title": "Luxus Condo Pattaya Beach",
+  "description": "Luxuriöses Condo direkt am Strand.",
+  "body": "Luxuriöses Condo direkt am Strand."
+}
