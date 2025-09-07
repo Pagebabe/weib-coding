@@ -1,11 +1,11 @@
 SHELL := /bin/bash
 .ONESHELL:
 
-include archive-config.env
+include .env.local
 
 archive-migration:
 	@chmod +x scripts/import-archive.sh
-	@./scripts/import-archive.sh
+	@export ARCHIVE_PATH && ./scripts/import-archive.sh
 	@node scripts/migrate-archive.mjs || true
 	@git add -A
 	@git commit -m "chore: archive migration run" || echo "no changes to commit"

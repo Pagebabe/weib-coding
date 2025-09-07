@@ -6,7 +6,7 @@ DEST="$ROOT/imports/old_html"
 TMP="$ROOT/.tmp_archive_extract"
 
 if [[ -z "${SRC}" ]]; then
-  echo "ERROR: ARCHIVE_PATH ist leer. Setze in archive-config.env den Pfad zur ZIP/Ordner."
+  echo "ERROR: ARCHIVE_PATH ist leer. Setze in .env.local den Pfad zur ZIP/Ordner."
   exit 1
 fi
 
