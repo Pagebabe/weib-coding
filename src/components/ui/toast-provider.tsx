@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Toast, ToastProps } from './toast';
+import { Toast } from './toast';
+import type { ToastProps } from './toast';
 
 interface ToastContextType {
   addToast: (toast: Omit<ToastProps, 'id'>) => void;
