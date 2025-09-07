@@ -15,3 +15,8 @@ ui-polish:
 
 vercel-deploy:
 	@vercel --prod
+
+import-csv:
+	@node scripts/csv-to-properties.mjs
+	@git add -A
+	@git commit -m "feat: import properties from CSV" || echo no changes
