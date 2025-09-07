@@ -1,14 +1,85 @@
 ---
 import Base from "../../../layouts/BaseLayout.astro";
+import ServiceCard from "../../../components/home/ServiceCard";
+import { Home, MapPin, Handshake, Shield, Users, TrendingUp } from "lucide-react";
 ---
-<Base lang="de" title="Services – Weib-Coding" description="Verkauf, Vermietung und Verwaltung in Pattaya.">
-  <section class="prose">
-    <h1>Unsere Services</h1>
-    <ul>
-      <li>Vermarktung & Verkauf von Immobilien</li>
-      <li>Vermietung & Verwaltung</li>
-      <li>Standort- & Projektberatung</li>
-    </ul>
-    <p><a class="underline" href="/de/contact/">Jetzt Beratung anfragen</a></p>
-  </section>
+
+<Base lang="de" title="Services – Weib-Coding" description="Professionelle Immobilienberatung in Pattaya. Verkauf, Vermietung, Verwaltung und Standortberatung.">
+  <div class="container section">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl font-bold mb-4" style="color: var(--color-text);">Unsere Services</h1>
+      <p class="text-xl" style="color: var(--color-muted);">Vollservice für Ihre Immobilienbedürfnisse in Pattaya</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+      <ServiceCard 
+        client:load 
+        icon={Home} 
+        title="Immobilienverkauf" 
+        desc="Professionelle Vermarktung mit modernen Marketingstrategien. Von der Bewertung bis zum Vertragsabschluss."
+      />
+      <ServiceCard 
+        client:load 
+        icon={MapPin} 
+        title="Standortberatung" 
+        desc="Finden Sie den perfekten Standort für Ihre Bedürfnisse. Wir kennen Pattaya wie unsere Westentasche."
+      />
+      <ServiceCard 
+        client:load 
+        icon={Handshake} 
+        title="Vollservice" 
+        desc="Von der Suche bis zum Vertragsabschluss – wir begleiten Sie durch den gesamten Prozess."
+      />
+      <ServiceCard 
+        client:load 
+        icon={Shield} 
+        title="Immobilienverwaltung" 
+        desc="Professionelle Verwaltung Ihrer Immobilie. Mietersuche, Wartung und rechtliche Betreuung."
+      />
+      <ServiceCard 
+        client:load 
+        icon={Users} 
+        title="Investitionsberatung" 
+        desc="Strategische Beratung für Immobilieninvestitionen in Thailand. Maximieren Sie Ihre Rendite."
+      />
+      <ServiceCard 
+        client:load 
+        icon={TrendingUp} 
+        title="Marktanalyse" 
+        desc="Aktuelle Marktentwicklungen und Preistrends in Pattaya. Fundierte Entscheidungsgrundlagen."
+      />
+    </div>
+
+    <div class="bg-white rounded-2xl p-8 shadow-sm border" style="border-color: var(--card-border);">
+      <h2 class="text-2xl font-bold mb-6" style="color: var(--color-text);">Warum Weib-Coding?</h2>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div>
+          <h3 class="text-lg font-semibold mb-3" style="color: var(--color-text);">Lokale Expertise</h3>
+          <p style="color: var(--color-muted);">Über 10 Jahre Erfahrung im thailändischen Immobilienmarkt. Wir kennen die besten Lagen und aktuellen Marktentwicklungen.</p>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-3" style="color: var(--color-text);">Mehrsprachiger Service</h3>
+          <p style="color: var(--color-muted);">Beratung auf Deutsch, Englisch und Thai. Keine Sprachbarrieren bei Ihrem Immobilienprojekt.</p>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-3" style="color: var(--color-text);">Rechtssichere Abwicklung</h3>
+          <p style="color: var(--color-muted);">Alle Transaktionen erfolgen rechtssicher nach thailändischem Recht. Wir arbeiten mit erfahrenen Anwälten zusammen.</p>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-3" style="color: var(--color-text);">Persönliche Betreuung</h3>
+          <p style="color: var(--color-muted);">Individuelle Beratung und persönliche Betreuung. Wir nehmen uns Zeit für Ihre Wünsche und Bedürfnisse.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-12">
+      <a 
+        href="/de/contact/" 
+        class="inline-flex items-center px-8 py-4 rounded-lg text-white font-semibold transition-colors hover:opacity-90"
+        style="background-color: var(--color-primary);"
+      >
+        Jetzt Beratung anfragen
+      </a>
+    </div>
+  </div>
 </Base>

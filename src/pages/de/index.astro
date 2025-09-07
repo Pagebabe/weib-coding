@@ -9,7 +9,8 @@ import { loadProps } from "../../lib/loadProps";
 import ServiceCard from "../../components/home/ServiceCard";
 import { Home, MapPin, Handshake } from "lucide-react";
 const all = await loadProps('de');
-const prioritized = ['park-villa-privatpool','luxury-condo-beach','family-house-naklua','budget-studio-jomtien'];
+// Aktualisierte Immobilien-Prioritäten basierend auf der Live-Website
+const prioritized = ['beachfront-villa-jomtien','family-house-naklua','luxury-condo-beach','modern-apartment-central'];
 let top4 = all.filter(p => prioritized.includes(p.slug)).slice(0, 4);
 if (top4.length < 4) {
   top4 = top4.concat(all.filter(p => !prioritized.includes(p.slug)).slice(0, 4 - top4.length));
