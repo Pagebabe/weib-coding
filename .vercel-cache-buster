@@ -1,0 +1,9 @@
+# Cache-Buster für Vercel
+# Diese Datei wird bei jedem Deployment neu erstellt
+# Timestamp: 2025-09-07T12:20:00Z
+# Build-Version: 2.0.0
+# Unsplash-Images: Aktiviert
+# Cache-Control: no-store, no-cache, must-revalidate
+
+# Diese Datei forciert einen kompletten Neubuild bei Vercel
+# und verhindert aggressive Caching-Probleme
