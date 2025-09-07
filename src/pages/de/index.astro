@@ -19,7 +19,18 @@ const featured = all.slice(0, 6);
 ---
 <Base lang="de" title="Immobilien in Pattaya – Weib-Coding" description="Professionelle Immobilienberatung in Pattaya. Verkauf, Vermietung und Service für Villen, Condos und Häuser. Jetzt entdecken!">
   <div class="container section pt-6">
-    <Hero locale="de" title={common.heroTitle} subtitle={common.heroSubtitle} image="/images/hero/de.jpg" ctaPrimary={common.ctaPrimary} ctaSecondary={common.ctaSecondary} />
+    <Hero 
+      locale="de" 
+      title={common.heroTitle} 
+      subtitle={common.heroSubtitle} 
+      images={[
+        "https://images.unsplash.com/photo-1544984243-ec57ea16fe25?w=1200&h=500&fit=crop&crop=center",
+        "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&h=500&fit=crop&crop=center",
+        "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=1200&h=500&fit=crop&crop=center"
+      ]}
+      ctaPrimary={common.ctaPrimary} 
+      ctaSecondary={common.ctaSecondary} 
+    />
   </div>
 
   <Section title="Aktuelle Angebote" subtitle="Entdecken Sie unsere neuesten Immobilien in Pattaya">

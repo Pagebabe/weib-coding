@@ -49,7 +49,7 @@ export default function PropertyCard({ p }: { p: P }) {
           {/* Image with overlay */}
           <div className="relative aspect-[4/3] overflow-hidden">
             <img 
-              src={p.cover || '/images/placeholder-property.jpg'} 
+              src={p.cover || 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=600&fit=crop&crop=center'} 
               alt={p.title} 
               className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" 
               loading="lazy"

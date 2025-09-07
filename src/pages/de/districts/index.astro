@@ -51,8 +51,13 @@ const districtProperties = districts.map(district => ({
       {districtProperties.map(district => (
         <div class="card overflow-hidden hover:shadow-lg transition-shadow">
           <a href={routes.distDetail('de', district.slug)} class="block">
-            <div class="aspect-video bg-gray-200 flex items-center justify-center">
-              <span class="text-gray-500">Bild: {district.name}</span>
+            <div class="aspect-video overflow-hidden">
+              <img 
+                src={district.image || `https://images.unsplash.com/photo-${district.slug === 'pattaya-beach' ? '1544984243-ec57ea16fe25' : district.slug === 'jomtien' ? '1564013799919-ab600027ffc6' : '1570129477492-45c003edd2be'}?w=800&h=450&fit=crop&crop=center`}
+                alt={district.name}
+                class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                loading="lazy"
+              />
             </div>
             <div class="p-6">
               <h3 class="text-xl font-semibold mb-2" style="color: var(--color-text);">{district.name}</h3>
