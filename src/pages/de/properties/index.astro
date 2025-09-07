@@ -1,6 +1,7 @@
 ---
 import Base from "../../../layouts/BaseLayout.astro";
 import PropertyCard from "../../../components/PropertyCard";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
 import { loadProps } from "../../../lib/loadProps";
 const props = await loadProps('de');
 const data = JSON.stringify(props);
@@ -8,9 +9,19 @@ const data = JSON.stringify(props);
 // SEO-optimierte Title und Description
 const seoTitle = `Immobilien · DE – Weib-Coding`;
 const seoDescription = `Immobilien in Pattaya entdecken. Villen, Condos, Häuser zum Verkauf und zur Miete. Professionelle Beratung vor Ort.`;
+
+const breadcrumbItems = [
+  { label: 'Immobilien' }
+];
 ---
-<Base lang="de" title={seoTitle} description={seoDescription}>
-  <h1 class="text-2xl font-semibold mb-4">Immobilien</h1>
+<Base 
+  lang="de" 
+  title={seoTitle} 
+  description={seoDescription}
+  tags={['Immobilien', 'Pattaya', 'Villa', 'Condo', 'Haus', 'Verkauf', 'Miete']}
+>
+  <Breadcrumbs items={breadcrumbItems} locale="de" />
+  <h1 class="text-2xl font-semibold mb-4" style="color: var(--color-text);">Immobilien</h1>
 
   <!-- Erweiterte Filter mit besseren Komponenten -->
   <div class="bg-white rounded-xl shadow-sm border p-6 mb-8">

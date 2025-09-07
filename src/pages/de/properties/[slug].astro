@@ -1,5 +1,6 @@
 ---
 import Base from "../../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
 import { loadPropBySlug, loadProps } from "../../../lib/loadProps";
 
 export async function getStaticPaths() {
@@ -51,43 +52,36 @@ if (p.price_thb) og.searchParams.set('price', String(p.price_thb));
 if (p.location)  og.searchParams.set('loc', p.location);
 if (p.images?.[0] || p.cover) og.searchParams.set('img', new URL(p.images?.[0] ?? p.cover!, Astro.site).toString());
 
-const breadcrumbs = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Start", "item": "https://weib-coding.vercel.app/de/" },
-    { "@type": "ListItem", "position": 2, "name": "Immobilien", "item": "https://weib-coding.vercel.app/de/properties/" },
-    { "@type": "ListItem", "position": 3, "name": p.title, "item": "https://weib-coding.vercel.app" + p.url }
-  ]
-};
+const breadcrumbItems = [
+  { label: 'Immobilien', href: '/de/properties/' },
+  { label: p.title }
+];
 ---
-<Base lang="de" title={seoTitle} description={seoDescription} image={og.toString()}>
-  <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
-  <script type="application/ld+json">{JSON.stringify(breadcrumbs)}</script>
-  <!-- Breadcrumbs -->
-  <nav class="text-sm text-gray-600 mb-6" aria-label="Breadcrumb">
-    <ol class="flex items-center space-x-2">
-      <li><a href="/de/" class="hover:text-blue-600">Home</a></li>
-      <li class="flex items-center">
-        <svg class="w-4 h-4 mx-2" fill="currentColor" viewBox="0 0 20 20">
-          <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-        </svg>
-        <a href="/de/properties/" class="hover:text-blue-600">Immobilien</a>
-      </li>
-      <li class="flex items-center">
-        <svg class="w-4 h-4 mx-2" fill="currentColor" viewBox="0 0 20 20">
-          <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-        </svg>
-        <span class="text-gray-900">{p.title}</span>
-      </li>
-    </ol>
-  </nav>
+<Base 
+  lang="de" 
+  title={seoTitle} 
+  description={seoDescription} 
+  image={og.toString()}
+  property={p}
+  type="article"
+  tags={[p.type, p.location, 'Immobilien', 'Pattaya']}
+>
+  <Breadcrumbs items={breadcrumbItems} locale="de" />
 
   <article class="prose max-w-none">
     <h1>{p.title}</h1>
     <p class="text-sm text-gray-600">{p.location} · {p.type} · {p.bedrooms} Schlafzimmer</p>
     <div class="grid md:grid-cols-2 gap-4 my-6">
-      {p.images?.map(src => <img src={src} alt={p.title} class="w-full rounded-lg" loading="lazy" decoding="async" />)}
+      {p.images?.map(src => (
+        <img 
+          src={src} 
+          alt={p.title} 
+          class="w-full rounded-lg scale-in" 
+          loading="lazy" 
+          decoding="async"
+          style="box-shadow: var(--shadow-md);"
+        />
+      ))}
     </div>
     <h2>Daten & Fakten</h2>
     <ul>
