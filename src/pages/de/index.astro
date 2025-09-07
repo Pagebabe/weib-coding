@@ -1,0 +1,491 @@
+---
+// Deutsche Version der Website - identisch mit der Hauptseite
+const title = "Weib-Coding - Immobilien in Pattaya";
+const description = "Professionelle Immobilienberatung in Pattaya, Thailand. Verkauf, Vermietung und Service für Villen, Condos und Häuser.";
+---
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+    <meta name="description" content={description}>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2563eb;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                        url('https://images.unsplash.com/photo-1544984243-ec57ea16fe25?w=1920&h=1080&fit=crop&crop=center');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            padding: 18px 36px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+            border: 2px solid transparent;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+            background: linear-gradient(135deg, #1d4ed8, #1e40af);
+        }
+        
+        .stats {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #1e293b, #334155);
+            color: white;
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .stat-item {
+            padding: 1rem;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #60a5fa;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .features {
+            padding: 80px 0;
+            background: #f8fafc;
+        }
+        
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #1e293b;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            border-radius: 20px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(37, 99, 235, 0.4);
+        }
+        
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: #1e293b;
+        }
+        
+        .feature-card p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+        
+        .properties {
+            padding: 80px 0;
+        }
+        
+        .properties h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #1e293b;
+        }
+        
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .property-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .property-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .property-image {
+            width: 100%;
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .property-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(0,0,0,0.1), rgba(0,0,0,0.3));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .property-card:hover .property-image::before {
+            opacity: 1;
+        }
+        
+        .property-content {
+            padding: 1.5rem;
+        }
+        
+        .property-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1e293b;
+        }
+        
+        .property-location {
+            color: #64748b;
+            margin-bottom: 1rem;
+        }
+        
+        .property-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2563eb;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+            padding: 3rem 0 2rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: #60a5fa;
+        }
+        
+        .footer-section p, .footer-section a {
+            color: #cbd5e1;
+            text-decoration: none;
+            line-height: 1.6;
+        }
+        
+        .footer-section a:hover {
+            color: #60a5fa;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #334155;
+            padding-top: 2rem;
+            text-align: center;
+            color: #94a3b8;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .features-grid,
+            .properties-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="/de/" class="logo">Weib-Coding</a>
+            <ul class="nav-links">
+                <li><a href="#properties">Immobilien</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Immobilien in Pattaya</h1>
+                <p>Professionelle Beratung für Verkauf, Vermietung und Service</p>
+                <a href="#properties" class="cta-button">Immobilien entdecken</a>
+            </div>
+        </section>
+
+        <section class="stats">
+            <div class="container">
+                <h2>Unsere Erfolge</h2>
+                <p>Vertrauen Sie auf unsere langjährige Erfahrung</p>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Zufriedene Kunden</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">1000+</div>
+                        <div class="stat-label">Verkaufte Immobilien</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Jahre Erfahrung</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Kundenzufriedenheit</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features" id="services">
+            <div class="container">
+                <h2>Unsere Services</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🏠</div>
+                        <h3>Immobilienverkauf</h3>
+                        <p>Professionelle Vermarktung mit modernen Marketingstrategien für optimale Verkaufsergebnisse.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📍</div>
+                        <h3>Standortberatung</h3>
+                        <p>Finden Sie den perfekten Standort für Ihre Bedürfnisse in Pattaya und Umgebung.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🤝</div>
+                        <h3>Vollservice</h3>
+                        <p>Von der Suche bis zum Vertragsabschluss – wir begleiten Sie durch den gesamten Prozess.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="properties" id="properties">
+            <div class="container">
+                <h2>Aktuelle Angebote</h2>
+                <div class="properties-grid">
+                    <div class="property-card">
+                        <div class="property-image" style="background-image: url('https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&h=600&fit=crop&crop=center')"></div>
+                        <div class="property-content">
+                            <h3 class="property-title">Beachfront Villa Jomtien</h3>
+                            <p class="property-location">Jomtien Beach • Villa • 4 Schlafzimmer</p>
+                            <p class="property-price">22.000.000 THB</p>
+                        </div>
+                    </div>
+                    <div class="property-card">
+                        <div class="property-image" style="background-image: url('https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=800&h=600&fit=crop&crop=center')"></div>
+                        <div class="property-content">
+                            <h3 class="property-title">Familienhaus Naklua</h3>
+                            <p class="property-location">Naklua • Haus • 4 Schlafzimmer</p>
+                            <p class="property-price">6.500.000 THB</p>
+                        </div>
+                    </div>
+                    <div class="property-card">
+                        <div class="property-image" style="background-image: url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop&crop=center')"></div>
+                        <div class="property-content">
+                            <h3 class="property-title">Luxus Condo Pattaya</h3>
+                            <p class="property-location">Central Pattaya • Condo • 2 Schlafzimmer</p>
+                            <p class="property-price">8.500.000 THB</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Weib-Coding</h3>
+                    <p>Ihr vertrauensvoller Partner für Immobilien in Pattaya. Professionelle Beratung für Verkauf, Vermietung und Service.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Schnelle Links</h3>
+                    <p><a href="#properties">Immobilien</a></p>
+                    <p><a href="#services">Services</a></p>
+                    <p><a href="#contact">Kontakt</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Kontakt</h3>
+                    <p>📞 +66 38 123 456</p>
+                    <p>📧 info@weib-coding.com</p>
+                    <p>📍 Pattaya, Thailand</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Weib-Coding • Pattaya, Thailand • Alle Rechte vorbehalten</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling für Navigation
+        document.querySelectorAll("a[href^=\"#\"]").forEach(anchor => {
+            anchor.addEventListener("click", function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute("href"));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
