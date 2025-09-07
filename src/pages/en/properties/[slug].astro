@@ -18,8 +18,12 @@ export async function getStaticPaths() {
 const { slug } = Astro.props;
 const p = await loadPropBySlug('en', slug);
 if (!p) throw new Error("Property not found: " + slug);
+
+// SEO-optimized Title and Description
+const seoTitle = `${p.title} - ${p.type} in ${p.location} | Weib-Coding Real Estate Pattaya`;
+const seoDescription = `${p.title} - ${p.type} in ${p.location}, Thailand. ${p.bedrooms} bedrooms, ${p.living_sqm ? p.living_sqm + 'm² living area' : ''} for ${new Intl.NumberFormat('en-US').format(p.price_thb)} THB. Professional real estate service in Pattaya.`;
 ---
-<Base lang="en" title={`${p.title} – Real Estate in Pattaya`} description={p.description}>
+<Base lang="en" title={seoTitle} description={seoDescription} image={p.cover}>
   <article class="prose max-w-none">
     <h1>{p.title}</h1>
     <p class="text-sm text-gray-600">{p.location} · {p.type} · {p.bedrooms} Bedrooms</p>

@@ -20,11 +20,15 @@ const { slug } = Astro.props;
 const p = await loadPropBySlug('de', slug);
 if (!p) throw new Error("Property not found: " + slug);
 
+// SEO-optimierte Title und Description
+const seoTitle = `${p.title} - ${p.type} in ${p.location} | Weib-Coding Immobilien Pattaya`;
+const seoDescription = `${p.title} - ${p.type} in ${p.location}, Thailand. ${p.bedrooms} Schlafzimmer, ${p.living_sqm ? p.living_sqm + 'm² Wohnfläche' : ''} für ${new Intl.NumberFormat('de-DE').format(p.price_thb)} THB. Professionelle Immobilienberatung in Pattaya.`;
+
 const jsonLd = {
   "@context":"https://schema.org",
   "@type":"RealEstateListing",
   "name": p.title,
-  "url": "https://example.com" + p.url,
+  "url": "https://weib-coding.vercel.app" + p.url,
   "image": p.images || [],
   "description": p.description || p.title,
   "offers": {
@@ -40,9 +44,54 @@ const jsonLd = {
   },
   "category": p.type
 };
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://weib-coding.vercel.app/de/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Immobilien",
+      "item": "https://weib-coding.vercel.app/de/properties/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": p.title,
+      "item": "https://weib-coding.vercel.app" + p.url
+    }
+  ]
+};
 ---
-<Base lang="de" title={`${p.title} – Immobilien in Pattaya`} description={p.description}>
+<Base lang="de" title={seoTitle} description={seoDescription} image={p.cover}>
   <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+  <script type="application/ld+json">{JSON.stringify(breadcrumbJsonLd)}</script>
+  <!-- Breadcrumbs -->
+  <nav class="text-sm text-gray-600 mb-6" aria-label="Breadcrumb">
+    <ol class="flex items-center space-x-2">
+      <li><a href="/de/" class="hover:text-blue-600">Home</a></li>
+      <li class="flex items-center">
+        <svg class="w-4 h-4 mx-2" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+        </svg>
+        <a href="/de/properties/" class="hover:text-blue-600">Immobilien</a>
+      </li>
+      <li class="flex items-center">
+        <svg class="w-4 h-4 mx-2" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+        </svg>
+        <span class="text-gray-900">{p.title}</span>
+      </li>
+    </ol>
+  </nav>
+
   <article class="prose max-w-none">
     <h1>{p.title}</h1>
     <p class="text-sm text-gray-600">{p.location} · {p.type} · {p.bedrooms} Schlafzimmer</p>

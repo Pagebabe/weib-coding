@@ -18,8 +18,12 @@ export async function getStaticPaths() {
 const { slug } = Astro.props;
 const p = await loadPropBySlug('th', slug);
 if (!p) throw new Error("Property not found: " + slug);
+
+// SEO-optimized Title and Description (Thai)
+const seoTitle = `${p.title} - ${p.type} ใน ${p.location} | Weib-Coding อสังหาฯ พัทยา`;
+const seoDescription = `${p.title} - ${p.type} ใน ${p.location}, ประเทศไทย. ${p.bedrooms} ห้องนอน, ${p.living_sqm ? p.living_sqm + 'ตร.ม. พื้นที่ใช้สอย' : ''} ราคา ${new Intl.NumberFormat('th-TH').format(p.price_thb)} บาท. บริการอสังหาริมทรัพย์มืออาชีพในพัทยา.`;
 ---
-<Base lang="th" title={`${p.title} – อสังหาฯ พัทยา`} description={p.description}>
+<Base lang="th" title={seoTitle} description={seoDescription} image={p.cover}>
   <article class="prose max-w-none">
     <h1>{p.title}</h1>
     <p class="text-sm text-gray-600">{p.location} · {p.type} · {p.bedrooms} ห้องนอน</p>
