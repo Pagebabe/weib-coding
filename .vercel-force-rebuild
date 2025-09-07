@@ -1,0 +1,8 @@
+# Force Rebuild für Vercel
+# Diese Datei forciert einen kompletten Neubuild
+# Timestamp: 2025-09-07T22:05:00Z
+# Version: 3.0.0
+# Status: Force Rebuild Required
+
+# Diese Datei wird bei jedem Deployment neu erstellt
+# und verhindert aggressive Caching-Probleme bei Vercel
